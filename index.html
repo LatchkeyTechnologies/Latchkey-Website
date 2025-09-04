@@ -114,18 +114,21 @@
       opacity: 1; /* always visible */
       pointer-events:none;
     }
-    .btn:hover{ transform: translateY(-2px); opacity: 1; }
 
     /* ===== RING POSITIONING ===== */
     .ring-nav{ position:absolute; inset:0; pointer-events:none }
+    .ring-btn{ --lift: 0px; }
     .ring-btn{
       position:absolute; top:50%; left:50%; pointer-events:auto;
       transform:
         translate(-50%, -50%)
         rotate(var(--angle))
         translateY(calc(-1 * var(--ring-radius)))
-        rotate(calc(-1 * var(--angle)));
+        rotate(calc(-1 * var(--angle)))
+        translateY(var(--lift));   /* tiny lift applied here */
     }
+    .ring-btn:hover{ --lift:-2px; opacity:1; }  /* lift only ring buttons */
+
     .a0{--angle:0deg} .a45{--angle:45deg} .a90{--angle:90deg} .a135{--angle:135deg}
     .a180{--angle:180deg} .a225{--angle:225deg} .a270{--angle:270deg} .a315{--angle:315deg}
 
@@ -145,14 +148,22 @@
 
     /* ===== Footer row ===== */
     footer.social{
-      margin-top:auto; padding:18px 0;
-      display:flex; gap:22px; justify-content:center;
+      margin-top:auto;
+      padding: 18px;
+      display:flex;
+      width: 100%;
+      max-width: var(--ring-size);     /* match ring width */
+      margin-left:auto; margin-right:auto;
+      justify-content: space-between;  /* spread edge-to-edge */
+      gap: 28px;                        /* breathing room between buttons */
       background:transparent; border-top:none;
     }
+    /* footer buttons still get a little hover lift */
+    footer.social .btn:hover{ transform: translateY(-2px); opacity:1; }
   </style>
 </head>
 <body>
-  <!-- Only CLICK sound now -->
+  <!-- Click sound only (mobile friendly) -->
   <audio id="sndClick" src="Burst.mp3" preload="auto"></audio>
 
   <main class="stage">
