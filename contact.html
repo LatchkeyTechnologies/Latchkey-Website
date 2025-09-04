@@ -10,27 +10,33 @@
   body{ margin:0; background:var(--bg); color:var(--fg); font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; min-height:100vh; display:grid; place-items:center }
   .wrap{ text-align:center; padding:24px }
   .logo{ width:min(40vw,220px); filter:drop-shadow(0 8px 24px rgba(0,0,0,.35)); }
-  .neon{ margin-top:18px; font:700 clamp(28px,6vw,56px)/1.1 "Segoe UI",system-ui; color:var(--accent);
+  .neon{
+    margin-top:18px; font:700 clamp(28px,6vw,56px)/1.1 "Segoe UI",system-ui;
+    color:var(--accent);
     text-shadow:0 0 6px var(--accent),0 0 14px var(--accent),0 0 28px var(--accent);
-    letter-spacing:.06em; }
-  .back{ margin-top:22px; color:#cfe7ff; text-decoration:none; border:1px solid rgba(255,255,255,.15); padding:10px 14px; border-radius:12px }
+    letter-spacing:.06em;
+  }
+  .info{
+    margin-top:14px; opacity:.95;
+  }
+  .info a{ color:#cfe7ff; text-decoration:none }
+  .info a:hover{ text-decoration:underline }
+  .back{ margin-top:22px; color:#cfe7ff; text-decoration:none; border:1px solid rgba(255,255,255,.15); padding:10px 14px; border-radius:12px; display:inline-block }
 </style>
 </head>
 <body class="gold">
   <div class="wrap">
     <img class="logo" src="transparentlogo.png" alt="Latchkey Technologies">
     <h1 class="neon">Contact Us</h1>
-    <p style="opacity:.8;max-width:680px;margin:10px auto 0">Placeholder page. Content goes here.</p>
+
+    <div class="info">
+      <p><i class="fas fa-phone"></i> <a href="tel:+1-817-550-1924">+1 (817) 550-1924</a></p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:latchkeytechnologies@gmail.com">latchkeytechnologies@gmail.com</a></p>
+      <p><i class="fas fa-location-dot"></i> 200 S. Oakridge Dr, Ste 101, Box302, Hudson Oaks, TX 76087</p>
+      <p><i class="fas fa-clock"></i> Mon–Fri 9:00–5:00 CT</p>
+    </div>
+
     <p><a class="back" href="index.html">← Back to home</a></p>
   </div>
-
-<script>
-  const map = {
-    gold:"#FFC200", green:"#00FF88", red:"#FF3B3B", orange:"#FFA43B",
-    warm:"#FFF0CC", blue:"#5CC3FF", purple:"#C84BFF"
-  };
-  const body = document.body;
-  for (const k in map){ if (body.classList.contains(k)) document.documentElement.style.setProperty('--accent', map[k]) }
-</script>
 </body>
 </html>
