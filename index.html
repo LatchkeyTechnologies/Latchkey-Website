@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Latchkey Technologies</title>
 
-  <!-- Font Awesome for social icons -->
+  <!-- Font Awesome for social + ring icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
@@ -13,13 +13,17 @@
       --bg: rgb(10,10,40);
       --fg: #E9EEF7;
       --muted: #9AA3B2;
-      --ring-size: clamp(340px, 60vw, 560px); /* area reserved for ring links */
-      --logo-size: clamp(200px, 42vw, 420px); /* responsive logo size */
 
-      /* shared for footer + future ring buttons */
-      --btn-size: 64px;      
-      --icon-scale: 0.52;
+      /* Canvas + logo sizing */
+      --ring-size: clamp(360px, 62vw, 600px); /* orbit area */
+      --logo-size: clamp(200px, 42vw, 420px); /* logo itself */
+
+      /* Shared button sizing (footer + ring) */
+      --btn-size: 64px;     /* tweak once to scale all buttons */
+      --icon-scale: 0.52;   /* icon inside the button */
+      --ring-radius: calc(var(--ring-size) * 0.46); /* distance from center */
     }
+
     * { box-sizing: border-box; }
     html, body { height: 100%; }
     body{
@@ -40,7 +44,7 @@
       padding: 24px;
     }
 
-    /* Ring container (for future business links) */
+    /* Ring container (for business links) */
     .ring{
       width: var(--ring-size);
       height: var(--ring-size);
@@ -55,7 +59,7 @@
       filter: drop-shadow(0 8px 24px rgba(0,0,0,.35));
     }
 
-    /* ===== Social footer: invisible bar + large circular icon buttons ===== */
+    /* ===== Social footer (floating icon row) ===== */
     footer.social{
       margin-top: auto;
       padding: 18px 0;
@@ -65,7 +69,6 @@
       background: transparent;
       border-top: none;
     }
-
     footer.social .i{
       width: var(--btn-size);
       height: var(--btn-size);
@@ -87,21 +90,84 @@
     }
     footer.social .i:hover   { transform: translateY(-2px); opacity: 1; }
     footer.social .i:active  { transform: translateY( 0 );  opacity: .9; }
-
     /* Brand hover colors */
     footer.social .i.fb:hover { color:#1877F2; }
     footer.social .i.tt:hover { color:#ffffff; }
     footer.social .i.ig:hover { color:#E4405F; }
     footer.social .i.yt:hover { color:#FF0000; }
+
+    /* ===== Ring buttons around the logo ===== */
+    .ring-nav {
+      position: absolute;
+      inset: 0;                  /* fill the ring area */
+      pointer-events: none;      /* pass-through unless on a button */
+    }
+    .ring-btn {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: var(--btn-size);
+      height: var(--btn-size);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: #E9EEF7;
+      text-decoration: none;
+      pointer-events: auto;      /* clickable */
+      transition: transform .15s ease, color .15s ease, opacity .15s ease;
+      /* Polar placement trick: rotate, translate outward, rotate back */
+      transform:
+        translate(-50%, -50%)
+        rotate(var(--angle))
+        translateY(calc(-1 * var(--ring-radius)))
+        rotate(calc(-1 * var(--angle)));
+    }
+    .ring-btn > i {
+      font-size: calc(var(--btn-size) * var(--icon-scale));
+      line-height: 1;
+    }
+    .ring-btn:hover { opacity: 1; transform:
+        translate(-50%, -50%)
+        rotate(var(--angle))
+        translateY(calc(-1 * var(--ring-radius)))
+        rotate(calc(-1 * var(--angle)))
+        scale(1.1);
+      color: #2EE6C9; }
+
+    /* Eight evenly spaced angles (clockwise, top = 0deg) */
+    .a0   { --angle: 0deg; }
+    .a45  { --angle: 45deg; }
+    .a90  { --angle: 90deg; }
+    .a135 { --angle: 135deg; }
+    .a180 { --angle: 180deg; }
+    .a225 { --angle: 225deg; }
+    .a270 { --angle: 270deg; }
+    .a315 { --angle: 315deg; }
+
+    /* Responsive: tighten ring radius on very small screens */
+    @media (max-width: 420px){
+      :root { --btn-size: 56px; --ring-radius: calc(var(--ring-size) * 0.44); }
+    }
   </style>
 </head>
 <body>
   <main class="stage">
-    <!-- Centered logo with space for future ring -->
     <div class="ring">
       <img class="logo" src="transparentlogo.png" alt="Latchkey Technologies Logo" />
+
+      <!-- Orbiting business links -->
       <nav class="ring-nav" aria-label="Business links around logo">
-        <!-- future circular business links go here -->
+        <!-- Replace # with real URLs; swap icons to taste -->
+        <a class="ring-btn a0"   href="#" target="_blank" rel="noopener" aria-label="Shop"><i class="fas fa-bag-shopping"></i></a>
+        <a class="ring-btn a45"  href="#" target="_blank" rel="noopener" aria-label="Parts"><i class="fas fa-gears"></i></a>
+        <a class="ring-btn a90"  href="#" target="_blank" rel="noopener" aria-label="Custom Work"><i class="fas fa-screwdriver-wrench"></i></a>
+        <a class="ring-btn a135" href="#" target="_blank" rel="noopener" aria-label="Downloads"><i class="fas fa-download"></i></a>
+        <a class="ring-btn a180" href="#" target="_blank" rel="noopener" aria-label="About"><i class="fas fa-circle-info"></i></a>
+        <a class="ring-btn a225" href="#" target="_blank" rel="noopener" aria-label="Gallery"><i class="fas fa-images"></i></a>
+        <a class="ring-btn a270" href="#" target="_blank" rel="noopener" aria-label="Contact"><i class="fas fa-envelope"></i></a>
+        <a class="ring-btn a315" href="#" target="_blank" rel="noopener" aria-label="Support"><i class="fas fa-life-ring"></i></a>
       </nav>
     </div>
   </main>
