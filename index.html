@@ -71,6 +71,43 @@
       transition: transform .12s ease;
     }
     .s:hover{ transform: translateY(-1px); }
+    /* Footer: invisible bar with floating icons */
+footer.social {
+  margin-top: auto;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  background: transparent;  /* invisible */
+  border-top: none;
+}
+
+/* Icon links */
+footer.social .i {
+  color: #E9EEF7;           /* default site color */
+  font-size: 30px;          /* icon size */
+  text-decoration: none;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px; height: 48px; /* big tap target for mobile */
+  background: none;
+  border: none;
+  transition: transform .15s ease, color .15s ease, opacity .15s ease;
+  opacity: 0.9;
+}
+footer.social .i:hover {
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+/* Brand hover colors */
+footer.social .i.fb:hover { color:#1877F2; }   /* Facebook blue */
+footer.social .i.tt:hover { color:#fff; }      /* TikTok white */
+footer.social .i.ig:hover { color:#E4405F; }   /* Instagram pink */
+footer.social .i.yt:hover { color:#FF0000; }   /* YouTube red */
+
   </style>
 </head>
   <!-- Font Awesome for social icons -->
@@ -89,16 +126,16 @@
   </main>
 
  <footer class="social" aria-label="Social links">
-  <a class="i fb" href="https://facebook.com/YourPageName" target="_blank" rel="noopener" aria-label="Facebook">
+  <a class="i fb" href="https://www.facebook.com/profile.php?id=61579949641918" target="_blank" rel="noopener" aria-label="Facebook">
     <i class="fab fa-facebook-f"></i>
   </a>
-  <a class="i tt" href="https://tiktok.com/@YourHandle" target="_blank" rel="noopener" aria-label="TikTok">
+  <a class="i tt" href="https://www.tiktok.com/@latchkeytechnologies" target="_blank" rel="noopener" aria-label="TikTok">
     <i class="fab fa-tiktok"></i>
   </a>
-  <a class="i ig" href="https://instagram.com/YourHandle" target="_blank" rel="noopener" aria-label="Instagram">
+  <a class="i ig" href="https://www.instagram.com/latchkeytechnologies/" target="_blank" rel="noopener" aria-label="Instagram">
     <i class="fab fa-instagram"></i>
   </a>
-  <a class="i yt" href="https://youtube.com/@YourChannelName" target="_blank" rel="noopener" aria-label="YouTube">
+  <a class="i yt" href="https://www.youtube.com/@LatchkeyTechnologies" target="_blank" rel="noopener" aria-label="YouTube">
     <i class="fab fa-youtube"></i>
   </a>
 </footer>
