@@ -5,9 +5,92 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Latchkey Technologies</title>
   <style>
-    html, body { height: 100%; margin: 0; }
-    body { background: rgb(10,10,40); }
+    :root{
+      --bg: rgb(10,10,40);
+      --fg: #E9EEF7;
+      --muted: #9AA3B2;
+      --ring-size: clamp(340px, 60vw, 560px); /* area reserved for ring links */
+      --logo-size: clamp(200px, 42vw, 420px); /* responsive logo size */
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      display: flex;
+      min-height: 100%;
+      flex-direction: column;
+    }
+
+    /* Center stage */
+    .stage{
+      flex: 1;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    /* Ring container (for future business links) */
+    .ring{
+      width: var(--ring-size);
+      height: var(--ring-size);
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+    .logo{
+      width: var(--logo-size);
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,.35));
+      border-radius: 12px; /* just softens edges if PNG has visible bounds */
+    }
+
+    /* Placeholder for future ring links — hidden for now */
+    .ring-nav { display: none; }
+
+    /* Bottom social bar */
+    footer{
+      padding: 14px 18px 18px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,.06);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.06));
+    }
+    .s{
+      color: var(--fg);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      transition: transform .12s ease;
+    }
+    .s:hover{ transform: translateY(-1px); }
   </style>
 </head>
-<body></body>
+<body>
+  <main class="stage">
+    <!-- This wrapper stays centered; ring area ensures future circular links fit -->
+    <div class="ring">
+      <!-- your centered logo -->
+      <img class="logo" src="logo.png" alt="Latchkey Technologies Logo" />
+      <!-- ring-nav will hold circular business links later -->
+      <nav class="ring-nav" aria-label="Business links around logo">
+        <!-- we’ll populate these with positioned anchors -->
+      </nav>
+    </div>
+  </main>
+
+  <footer aria-label="Social links">
+    <a class="s" href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+    <a class="s" href="https://tiktok.com/" target="_blank" rel="noopener">TikTok</a>
+    <a class="s" href="https://youtube.com/" target="_blank" rel="noopener">YouTube</a>
+    <a class="s" href="mailto:hello@latchkeytechnologies.com">Email</a>
+  </footer>
+</body>
 </html>
