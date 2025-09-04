@@ -4,6 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Latchkey Technologies</title>
+
+  <!-- Font Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     :root{
       --bg: rgb(10,10,40);
@@ -11,6 +15,10 @@
       --muted: #9AA3B2;
       --ring-size: clamp(340px, 60vw, 560px); /* area reserved for ring links */
       --logo-size: clamp(200px, 42vw, 420px); /* responsive logo size */
+
+      /* shared for footer + future ring buttons */
+      --btn-size: 64px;      
+      --icon-scale: 0.52;
     }
     * { box-sizing: border-box; }
     html, body { height: 100%; }
@@ -45,100 +53,73 @@
       height: auto;
       display: block;
       filter: drop-shadow(0 8px 24px rgba(0,0,0,.35));
-      border-radius: 12px; /* just softens edges if PNG has visible bounds */
     }
 
-    /* Placeholder for future ring links — hidden for now */
-    .ring-nav { display: none; }
-
-    /* Bottom social bar */
-    footer{
-      padding: 14px 18px 18px;
+    /* ===== Social footer: invisible bar + large circular icon buttons ===== */
+    footer.social{
+      margin-top: auto;
+      padding: 18px 0;
       display: flex;
       justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      border-top: 1px solid rgba(255,255,255,.06);
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.06));
+      gap: 22px;
+      background: transparent;
+      border-top: none;
     }
-    .s{
-      color: var(--fg);
+
+    footer.social .i{
+      width: var(--btn-size);
+      height: var(--btn-size);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      transition: transform .12s ease;
+      background: none;
+      border: none;
+      color: #E9EEF7;
+      opacity: 0.95;
+      transform: translateZ(0);
+      transition: transform .15s ease, opacity .15s ease, color .15s ease;
     }
-    .s:hover{ transform: translateY(-1px); }
-    /* Footer: invisible bar with floating icons */
-footer.social {
-  margin-top: auto;
-  padding: 18px 20px;
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-  background: transparent;  /* invisible */
-  border-top: none;
-}
+    footer.social .i > i{
+      font-size: calc(var(--btn-size) * var(--icon-scale));
+      line-height: 1;
+    }
+    footer.social .i:hover   { transform: translateY(-2px); opacity: 1; }
+    footer.social .i:active  { transform: translateY( 0 );  opacity: .9; }
 
-/* Icon links */
-footer.social .i {
-  color: #E9EEF7;           /* default site color */
-  font-size: 30px;          /* icon size */
-  text-decoration: none;
-  line-height: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px; height: 48px; /* big tap target for mobile */
-  background: none;
-  border: none;
-  transition: transform .15s ease, color .15s ease, opacity .15s ease;
-  opacity: 0.9;
-}
-footer.social .i:hover {
-  transform: translateY(-2px);
-  opacity: 1;
-}
-
-/* Brand hover colors */
-footer.social .i.fb:hover { color:#1877F2; }   /* Facebook blue */
-footer.social .i.tt:hover { color:#fff; }      /* TikTok white */
-footer.social .i.ig:hover { color:#E4405F; }   /* Instagram pink */
-footer.social .i.yt:hover { color:#FF0000; }   /* YouTube red */
-
+    /* Brand hover colors */
+    footer.social .i.fb:hover { color:#1877F2; }
+    footer.social .i.tt:hover { color:#ffffff; }
+    footer.social .i.ig:hover { color:#E4405F; }
+    footer.social .i.yt:hover { color:#FF0000; }
   </style>
 </head>
-  <!-- Font Awesome for social icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <body>
   <main class="stage">
-    <!-- This wrapper stays centered; ring area ensures future circular links fit -->
+    <!-- Centered logo with space for future ring -->
     <div class="ring">
-      <!-- your centered logo -->
       <img class="logo" src="transparentlogo.png" alt="Latchkey Technologies Logo" />
-      <!-- ring-nav will hold circular business links later -->
       <nav class="ring-nav" aria-label="Business links around logo">
-        <!-- we’ll populate these with positioned anchors -->
+        <!-- future circular business links go here -->
       </nav>
     </div>
   </main>
 
- <footer class="social" aria-label="Social links">
-  <a class="i fb" href="https://www.facebook.com/profile.php?id=61579949641918" target="_blank" rel="noopener" aria-label="Facebook">
-    <i class="fab fa-facebook-f"></i>
-  </a>
-  <a class="i tt" href="https://www.tiktok.com/@latchkeytechnologies" target="_blank" rel="noopener" aria-label="TikTok">
-    <i class="fab fa-tiktok"></i>
-  </a>
-  <a class="i ig" href="https://www.instagram.com/latchkeytechnologies/" target="_blank" rel="noopener" aria-label="Instagram">
-    <i class="fab fa-instagram"></i>
-  </a>
-  <a class="i yt" href="https://www.youtube.com/@LatchkeyTechnologies" target="_blank" rel="noopener" aria-label="YouTube">
-    <i class="fab fa-youtube"></i>
-  </a>
-</footer>
-
+  <!-- Footer with large floating social icons -->
+  <footer class="social" aria-label="Social links">
+    <a class="i fb" href="https://www.facebook.com/LatchkeyTechnologies" target="_blank" rel="noopener" aria-label="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a class="i tt" href="https://www.tiktok.com/@latchkeytechnologies" target="_blank" rel="noopener" aria-label="TikTok">
+      <i class="fab fa-tiktok"></i>
+    </a>
+    <a class="i ig" href="https://www.instagram.com/latchkeytechnologies" target="_blank" rel="noopener" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a class="i yt" href="https://www.youtube.com/@LatchkeyTechnologies" target="_blank" rel="noopener" aria-label="YouTube">
+      <i class="fab fa-youtube"></i>
+    </a>
+  </footer>
 </body>
 </html>
