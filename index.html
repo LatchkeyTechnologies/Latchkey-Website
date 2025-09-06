@@ -1,156 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Latchkey Technologies</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
   <style>
-    body {
-      margin: 0;
-      background-color: #0a0a1a;
-      color: white;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      min-height: 100vh;
+    :root{
+      --bg:#0a0a28;       /* your 10,10,40 vibe */
+      --ring-size: min(76vmin, 680px);
+      --btn: 76px;        /* circle button size */
+      --radius: calc(var(--ring-size) * 0.4);
+      --footer-gap: clamp(16px, 2.5vmin, 28px);
     }
 
-    .logo {
-      margin-top: 20px;
+    *{ box-sizing:border-box }
+
+    html,body{
+      height:100%;
     }
 
-    .logo img {
-      width: 200px;
-      height: auto;
+    body{
+      margin:0;
+      background:var(--bg);
+      color:#fff;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
     }
 
-    .circle-container {
-      position: relative;
-      width: 500px;
-      height: 500px;
-      margin: 20px auto;
+    /* ---------- Top logo ---------- */
+    .logo{
+      margin: clamp(18px, 3vmin, 32px) 0 4vmin;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .logo img{
+      width: clamp(160px, 22vmin, 240px);
+      height:auto;
+      display:block;
     }
 
-    .circle-button {
-      position: absolute;
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: #111;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    /* ---------- Ring layout ---------- */
+    .ring{
+      position:relative;
+      width:var(--ring-size);
+      height:var(--ring-size);
+      margin: 0 auto;
+    }
+
+    /* central logo spacer (optional)
+       If you want the logo inside the ring instead of above, swap usage */
+    .ring__center{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      width: clamp(120px, 20vmin, 220px);
+      height:auto;
+      pointer-events:none;
+    }
+
+    /* Buttons */
+    .btn{
+      --glow: #fff;
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:var(--btn);
+      height:var(--btn);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      background:#000;
+      text-decoration:none;
       font-size: 28px;
-      color: white;
-      text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transform: translate(-50%,-50%); /* default (for center button) */
+      box-shadow: 0 0 24px rgba(255,255,255,.18);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn:hover{
+      transform: translate(-50%,-50%) scale(1.08);
+      box-shadow: 0 0 28px var(--glow);
     }
 
-    .circle-button:hover {
-      transform: scale(1.1);
+    /* Place around ring by rotating + translating, then un-rotating the icon */
+    .btn--orbit{
+      transform:
+        rotate(var(--angle))
+        translate(var(--radius))
+        rotate(calc(-1 * var(--angle)));
     }
 
-    /* Neon glows by category */
-    .contact { box-shadow: 0 0 20px 4px gold; }
-    .racing { box-shadow: 0 0 20px 4px red; }
-    .hydro { box-shadow: 0 0 20px 4px green; }
-    .tools { box-shadow: 0 0 20px 4px orange; }
-    .automation { box-shadow: 0 0 20px 4px #f5deb3; }
-    .security { box-shadow: 0 0 20px 4px blue; }
-    .prototyping { box-shadow: 0 0 20px 4px purple; }
+    /* Glows per category */
+    .glow-gold     { --glow: gold; }
+    .glow-red      { --glow: #ff3030; }
+    .glow-green    { --glow: #31ff7a; }
+    .glow-orange   { --glow: #ffb030; }
+    .glow-white    { --glow: #ffffff; }
+    .glow-blue     { --glow: #27a3ff; }
+    .glow-purple   { --glow: #b864ff; }
 
-    /* Circle positions */
-    .contact { top: -20px; left: 50%; transform: translateX(-50%); }
-    .racing { top: 80px; right: -20px; }
-    .hydro { bottom: 80px; right: -20px; }
-    .tools { bottom: -20px; left: 50%; transform: translateX(-50%); }
-    .automation { bottom: 80px; left: -20px; }
-    .security { top: 80px; left: -20px; }
-    .prototyping { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-
-    footer {
-      margin-top: auto;
-      margin-bottom: 40px;
+    /* ---------- Footer socials ---------- */
+    footer{
+      width:100%;
+      display:flex;
+      justify-content:center;
+      padding: calc(var(--footer-gap) * 1.2) 0 calc(var(--footer-gap) * 1.8);
+      margin-top:auto;
     }
-
-    .social {
-      display: flex;
-      gap: 20px;
+    .socials{
+      display:flex;
+      gap: clamp(14px, 2.2vmin, 28px);
     }
-
-    .social a {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: #111;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-size: 22px;
-      text-decoration: none;
-      box-shadow: 0 0 15px 3px hotpink;
-      transition: transform 0.2s ease;
+    .socials a{
+      width:56px;
+      height:56px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      text-decoration:none;
+      font-size:24px;
+      background:#000;
+      box-shadow: 0 0 22px rgba(255,105,180,.45);
+      transition: transform .15s ease;
     }
+    .socials a:hover{ transform: scale(1.1); }
 
-    .social a:hover {
-      transform: scale(1.1);
+    /* Better tap targets on mobile */
+    @media (pointer: coarse){
+      .btn{ font-size:26px }
+      .socials a{ width:60px; height:60px; font-size:26px }
     }
   </style>
 </head>
 <body>
-  <!-- Logo -->
+
+  <!-- Top logo (outside the ring) -->
   <div class="logo">
-    <img src="transparentlogo.png" alt="Latchkey Technologies Logo">
+    <img src="transparentlogo.png" alt="Latchkey Technologies" />
   </div>
 
-  <!-- Circle buttons -->
-  <div class="circle-container">
-    <a href="contact.html" class="circle-button contact"><i class="fas fa-phone"></i></a>
-    <a href="racing.html" class="circle-button racing"><i class="fas fa-flag-checkered"></i></a>
-    <a href="hydro.html" class="circle-button hydro"><i class="fas fa-seedling"></i></a>
-    <a href="tools.html" class="circle-button tools"><i class="fas fa-wrench"></i></a>
-    <a href="automation.html" class="circle-button automation"><i class="fas fa-cogs"></i></a>
-    <a href="security.html" class="circle-button security"><i class="fas fa-shield-alt"></i></a>
-    <a href="prototyping.html" class="circle-button prototyping"><i class="fas fa-cube"></i></a>
+  <!-- Ring with 6 orbiting buttons + 1 center button -->
+  <div class="ring" aria-label="Categories">
+    <!-- Center: Prototyping -->
+    <a class="btn glow-purple" href="prototyping.html" title="Prototyping & Production" data-sfx="nav">
+      <i class="fa-solid fa-cube"></i>
+    </a>
+
+    <!-- Around the ring (angles in degrees) -->
+    <!-- Top (Contact) -->
+    <a class="btn btn--orbit glow-gold" style="--angle:-90deg" href="contact.html" title="Contact Us" data-sfx="nav">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+
+    <!-- Upper-right (Racing) -->
+    <a class="btn btn--orbit glow-red" style="--angle:-30deg" href="racing.html" title="Latchkey Racing" data-sfx="nav">
+      <i class="fa-solid fa-flag-checkered"></i>
+    </a>
+
+    <!-- Lower-right (Hydro) -->
+    <a class="btn btn--orbit glow-green" style="--angle:30deg" href="hydro.html" title="Latchkey Hydro" data-sfx="nav">
+      <i class="fa-solid fa-seedling"></i>
+    </a>
+
+    <!-- Bottom (Tools) -->
+    <a class="btn btn--orbit glow-orange" style="--angle:90deg" href="tools.html" title="Latchkey Tools" data-sfx="nav">
+      <i class="fa-solid fa-wrench"></i>
+    </a>
+
+    <!-- Lower-left (Automation) -->
+    <a class="btn btn--orbit glow-white" style="--angle:150deg" href="automation.html" title="Latchkey Automation" data-sfx="nav">
+      <i class="fa-solid fa-gears"></i>
+    </a>
+
+    <!-- Upper-left (Security) -->
+    <a class="btn btn--orbit glow-blue" style="--angle:-150deg" href="security.html" title="Latchkey Security" data-sfx="nav">
+      <i class="fa-solid fa-shield-halved"></i>
+    </a>
   </div>
 
-  <!-- Footer social -->
+  <!-- Footer socials -->
   <footer>
-    <div class="social">
-      <a href="https://facebook.com/LatchkeyTechnologies" target="_blank"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://tiktok.com/@latchkeytechnologies" target="_blank"><i class="fab fa-tiktok"></i></a>
-      <a href="https://instagram.com/latchkeytechnologies" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://youtube.com/@LatchkeyTechnologies" target="_blank"><i class="fab fa-youtube"></i></a>
-    </div>
+    <nav class="socials" aria-label="Social links">
+      <a href="https://facebook.com/LatchkeyTechnologies" target="_blank" rel="noopener" data-no-sfx aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://tiktok.com/@latchkeytechnologies" target="_blank" rel="noopener" data-no-sfx aria-label="TikTok">
+        <i class="fab fa-tiktok"></i>
+      </a>
+      <a href="https://instagram.com/latchkeytechnologies" target="_blank" rel="noopener" data-no-sfx aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://youtube.com/@LatchkeyTechnologies" target="_blank" rel="noopener" data-no-sfx aria-label="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </nav>
   </footer>
 
-  <!-- Sounds -->
+  <!-- Click SFX -->
   <audio id="sfx-click" src="Burst.mp3" preload="auto"></audio>
 
   <script>
+    // Play Burst.mp3 then navigate (internal links only).
     (function () {
-      const anchors = Array.from(document.querySelectorAll('a[href]'))
-        .filter(a => a.origin === location.origin && !a.hasAttribute('data-no-sfx'));
-
       const clickAudio = document.getElementById('sfx-click');
 
-      anchors.forEach(a => {
-        a.addEventListener('click', function (e) {
+      const isInternal = (a) => a.origin === location.origin;
+
+      document.querySelectorAll('a[href]').forEach(a => {
+        if (!isInternal(a) || a.hasAttribute('data-no-sfx')) return;
+
+        a.addEventListener('click', (e) => {
+          // Let middle-click/new-tab/modified clicks work normally
           if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.target === '_blank') return;
 
           e.preventDefault();
-          const url = a.getAttribute('href');
+          const url = a.href;
 
           try {
             clickAudio.currentTime = 0;
             clickAudio.play().catch(() => {});
           } catch (_) {}
 
-          setTimeout(() => { window.location.href = url; }, 320);
+          // A short delay so the click is heard
+          setTimeout(() => { window.location.href = url; }, 300);
         });
       });
     })();
