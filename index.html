@@ -4,46 +4,147 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Latchkey Technologies</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      background-color: #0a0a1a;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .logo {
+      margin-top: 20px;
+    }
+
+    .logo img {
+      width: 200px;
+      height: auto;
+    }
+
+    .circle-container {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      margin: 20px auto;
+    }
+
+    .circle-button {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      color: white;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .circle-button:hover {
+      transform: scale(1.1);
+    }
+
+    /* Neon glows by category */
+    .contact { box-shadow: 0 0 20px 4px gold; }
+    .racing { box-shadow: 0 0 20px 4px red; }
+    .hydro { box-shadow: 0 0 20px 4px green; }
+    .tools { box-shadow: 0 0 20px 4px orange; }
+    .automation { box-shadow: 0 0 20px 4px #f5deb3; }
+    .security { box-shadow: 0 0 20px 4px blue; }
+    .prototyping { box-shadow: 0 0 20px 4px purple; }
+
+    /* Circle positions */
+    .contact { top: -20px; left: 50%; transform: translateX(-50%); }
+    .racing { top: 80px; right: -20px; }
+    .hydro { bottom: 80px; right: -20px; }
+    .tools { bottom: -20px; left: 50%; transform: translateX(-50%); }
+    .automation { bottom: 80px; left: -20px; }
+    .security { top: 80px; left: -20px; }
+    .prototyping { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+    footer {
+      margin-top: auto;
+      margin-bottom: 40px;
+    }
+
+    .social {
+      display: flex;
+      gap: 20px;
+    }
+
+    .social a {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 22px;
+      text-decoration: none;
+      box-shadow: 0 0 15px 3px hotpink;
+      transition: transform 0.2s ease;
+    }
+
+    .social a:hover {
+      transform: scale(1.1);
+    }
+  </style>
 </head>
 <body>
-  <div class="logo-container">
-    <img src="logo.png" alt="Latchkey Technologies Logo" class="logo">
+  <!-- Logo -->
+  <div class="logo">
+    <img src="transparentlogo.png" alt="Latchkey Technologies Logo">
   </div>
 
   <!-- Circle buttons -->
-  <div class="circle-menu">
-    <a href="contact.html" class="circle-btn gold" data-sfx="nav"><i class="fas fa-phone"></i></a>
-    <a href="racing.html" class="circle-btn red" data-sfx="nav"><i class="fas fa-flag-checkered"></i></a>
-    <a href="hydro.html" class="circle-btn green" data-sfx="nav"><i class="fas fa-seedling"></i></a>
-    <a href="tools.html" class="circle-btn orange" data-sfx="nav"><i class="fas fa-wrench"></i></a>
-    <a href="automation.html" class="circle-btn white" data-sfx="nav"><i class="fas fa-robot"></i></a>
-    <a href="security.html" class="circle-btn blue" data-sfx="nav"><i class="fas fa-shield-alt"></i></a>
-    <a href="prototyping.html" class="circle-btn purple" data-sfx="nav"><i class="fas fa-cubes"></i></a>
+  <div class="circle-container">
+    <a href="contact.html" class="circle-button contact"><i class="fas fa-phone"></i></a>
+    <a href="racing.html" class="circle-button racing"><i class="fas fa-flag-checkered"></i></a>
+    <a href="hydro.html" class="circle-button hydro"><i class="fas fa-seedling"></i></a>
+    <a href="tools.html" class="circle-button tools"><i class="fas fa-wrench"></i></a>
+    <a href="automation.html" class="circle-button automation"><i class="fas fa-cogs"></i></a>
+    <a href="security.html" class="circle-button security"><i class="fas fa-shield-alt"></i></a>
+    <a href="prototyping.html" class="circle-button prototyping"><i class="fas fa-cube"></i></a>
   </div>
 
-  <!-- Footer social buttons -->
-  <footer class="footer">
-    <a href="https://facebook.com/..." class="social-btn pink" data-sfx="nav"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://tiktok.com/@..." class="social-btn pink" data-sfx="nav"><i class="fab fa-tiktok"></i></a>
-    <a href="https://instagram.com/..." class="social-btn pink" data-sfx="nav"><i class="fab fa-instagram"></i></a>
-    <a href="https://youtube.com/@..." class="social-btn pink" data-sfx="nav"><i class="fab fa-youtube"></i></a>
+  <!-- Footer social -->
+  <footer>
+    <div class="social">
+      <a href="https://facebook.com/LatchkeyTechnologies" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://tiktok.com/@latchkeytechnologies" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="https://instagram.com/latchkeytechnologies" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://youtube.com/@LatchkeyTechnologies" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
   </footer>
 
-  <!-- Audio for click -->
+  <!-- Sounds -->
   <audio id="sfx-click" src="Burst.mp3" preload="auto"></audio>
 
   <script>
     (function () {
-      const anchors = document.querySelectorAll('[data-sfx="nav"]');
+      const anchors = Array.from(document.querySelectorAll('a[href]'))
+        .filter(a => a.origin === location.origin && !a.hasAttribute('data-no-sfx'));
+
       const clickAudio = document.getElementById('sfx-click');
 
       anchors.forEach(a => {
         a.addEventListener('click', function (e) {
-          if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-          e.preventDefault();
+          if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.target === '_blank') return;
 
-          const url = this.href;
+          e.preventDefault();
+          const url = a.getAttribute('href');
+
           try {
             clickAudio.currentTime = 0;
             clickAudio.play().catch(() => {});
@@ -54,8 +155,5 @@
       });
     })();
   </script>
-
-  <!-- Font Awesome (icons) -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
