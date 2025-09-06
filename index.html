@@ -4,132 +4,146 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Latchkey Technologies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     body {
       margin: 0;
       padding: 0;
-      background-color: #0a0a23;
+      background-color: #0a0a1a;
       color: white;
       font-family: Arial, sans-serif;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    .logo {
-      margin-top: 40px;
-    }
-
-    .logo img {
-      width: 300px;
-      max-width: 80%;
-    }
-
-    .button-ring {
+    /* Center container */
+    .center-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
       position: relative;
-      margin: 40px auto;
+    }
+
+    /* Logo */
+    .logo {
+      width: 250px;
+      margin-bottom: 40px;
+    }
+
+    /* Circle menu */
+    .circle-menu {
+      position: relative;
       width: 500px;
       height: 500px;
+      border-radius: 50%;
     }
 
-    .circle-button {
+    .circle-menu a {
       position: absolute;
       width: 70px;
       height: 70px;
+      background: black;
       border-radius: 50%;
-      background: #111;
       display: flex;
-      align-items: center;
       justify-content: center;
-      text-decoration: none;
+      align-items: center;
       color: white;
+      text-decoration: none;
       font-size: 28px;
-      box-shadow: 0 0 15px rgba(255,255,255,0.2);
-      transition: box-shadow 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      transition: transform 0.2s;
     }
 
-    .circle-button:hover {
-      transform: scale(1.1);
+    .circle-menu a:hover {
+      transform: scale(1.2);
     }
 
-    /* Specific button glow colors */
-    .contact { box-shadow: 0 0 25px gold; }
-    .racing { box-shadow: 0 0 25px red; }
-    .hydro { box-shadow: 0 0 25px limegreen; }
-    .tools { box-shadow: 0 0 25px orange; }
-    .automation { box-shadow: 0 0 25px white; }
-    .security { box-shadow: 0 0 25px deepskyblue; }
-    .prototyping { box-shadow: 0 0 25px purple; }
+    /* Neon glows per category */
+    .gold { box-shadow: 0 0 25px gold; }
+    .red { box-shadow: 0 0 25px red; }
+    .green { box-shadow: 0 0 25px green; }
+    .orange { box-shadow: 0 0 25px orange; }
+    .white { box-shadow: 0 0 25px white; }
+    .blue { box-shadow: 0 0 25px deepskyblue; }
+    .purple { box-shadow: 0 0 25px violet; }
 
-    /* Circle positioning */
-    .top    { top: 0; left: 50%; transform: translate(-50%, -50%); }
-    .top-left { top: 15%; left: 20%; transform: translate(-50%, -50%); }
-    .top-right { top: 15%; right: 20%; transform: translate(50%, -50%); }
-    .middle-left { top: 50%; left: 0; transform: translate(-50%, -50%); }
-    .middle-right { top: 50%; right: 0; transform: translate(50%, -50%); }
-    .bottom-left { bottom: 15%; left: 20%; transform: translate(-50%, 50%); }
-    .bottom-right { bottom: 15%; right: 20%; transform: translate(50%, 50%); }
-    .bottom { bottom: 0; left: 50%; transform: translate(-50%, 50%); }
+    /* Position buttons evenly */
+    .circle-menu a:nth-child(1) { top: 0; left: 50%; transform: translate(-50%, 0); }
+    .circle-menu a:nth-child(2) { top: 20%; left: 90%; transform: translate(-50%, -50%); }
+    .circle-menu a:nth-child(3) { top: 70%; left: 90%; transform: translate(-50%, -50%); }
+    .circle-menu a:nth-child(4) { top: 100%; left: 50%; transform: translate(-50%, -50%); }
+    .circle-menu a:nth-child(5) { top: 70%; left: 10%; transform: translate(-50%, -50%); }
+    .circle-menu a:nth-child(6) { top: 20%; left: 10%; transform: translate(-50%, -50%); }
+    .circle-menu a:nth-child(7) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
 
+    /* Footer */
     footer {
-      margin-top: 50px;
-      padding: 40px 0;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 30px;
     }
 
-    .social {
-      display: inline-block;
-      margin: 0 20px;
+    footer a {
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      background: #111;
+      background: black;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       font-size: 26px;
-      text-decoration: none;
       color: white;
+      text-decoration: none;
       box-shadow: 0 0 20px hotpink;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s;
     }
 
-    .social:hover {
+    footer a:hover {
       transform: scale(1.2);
     }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="logo">
-    <img src="transparentlogo.png" alt="Latchkey Technologies Logo">
-  </div>
-
-  <div class="button-ring">
-    <a href="contact.html" class="circle-button contact top"><i class="fas fa-phone"></i></a>
-    <a href="racing.html" class="circle-button racing top-right"><i class="fas fa-flag-checkered"></i></a>
-    <a href="hydro.html" class="circle-button hydro middle-right"><i class="fas fa-seedling"></i></a>
-    <a href="tools.html" class="circle-button tools bottom-right"><i class="fas fa-wrench"></i></a>
-    <a href="prototyping.html" class="circle-button prototyping bottom"><i class="fas fa-cubes"></i></a>
-    <a href="security.html" class="circle-button security bottom-left"><i class="fas fa-shield-alt"></i></a>
-    <a href="automation.html" class="circle-button automation middle-left"><i class="fas fa-robot"></i></a>
+  <div class="center-container">
+    <img src="logo.png" alt="Latchkey Logo" class="logo">
+    <div class="circle-menu">
+      <a href="contact.html" class="gold"><i class="fas fa-phone"></i></a>
+      <a href="racing.html" class="red"><i class="fas fa-flag-checkered"></i></a>
+      <a href="hydro.html" class="green"><i class="fas fa-seedling"></i></a>
+      <a href="tools.html" class="orange"><i class="fas fa-wrench"></i></a>
+      <a href="automation.html" class="white"><i class="fas fa-cogs"></i></a>
+      <a href="security.html" class="blue"><i class="fas fa-shield-alt"></i></a>
+      <a href="prototyping.html" class="purple"><i class="fas fa-cube"></i></a>
+    </div>
   </div>
 
   <footer>
-    <a href="https://facebook.com/LatchkeyTechnologies" class="social"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://tiktok.com/@latchkeytechnologies" class="social"><i class="fab fa-tiktok"></i></a>
-    <a href="https://instagram.com/latchkeytechnologies" class="social"><i class="fab fa-instagram"></i></a>
-    <a href="https://youtube.com/@LatchkeyTechnologies" class="social"><i class="fab fa-youtube"></i></a>
+    <a href="https://facebook.com/LatchkeyTechnologies" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://tiktok.com/@LatchkeyTechnologies" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <a href="https://instagram.com/LatchkeyTechnologies" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://youtube.com/@LatchkeyTechnologies" target="_blank"><i class="fab fa-youtube"></i></a>
   </footer>
 
-  <script>
-    document.querySelectorAll('.circle-button, .social').forEach(btn => {
-      btn.addEventListener('click', function (e) {
-        e.preventDefault(); // stop immediate navigation
-        const url = this.getAttribute('href');
-        const audio = new Audio('Burst.mp3');
-        audio.play();
+  <!-- Sounds -->
+  <audio id="click-sound" src="Burst.mp3"></audio>
 
-        // navigate once sound ends or after fallback timeout
-        audio.onended = () => { window.location.href = url; };
-        setTimeout(() => { window.location.href = url; }, 500);
+  <script>
+    document.querySelectorAll('.circle-menu a, footer a').forEach(button => {
+      button.addEventListener('click', function(event) {
+        event.preventDefault();
+        const sound = document.getElementById('click-sound');
+        sound.currentTime = 0;
+        sound.play();
+
+        // Wait for sound to play briefly before redirect
+        setTimeout(() => {
+          window.location.href = this.href;
+        }, 250);
       });
     });
   </script>
