@@ -1,250 +1,138 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Latchkey Technologies</title>
-
-  <!-- Icons (Font Awesome Free CDN) -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-
   <style>
-    :root{
-      --bg: rgb(10,10,40);
-      --ring-radius: min(30vmin, 340px);      /* distance from logo center to buttons */
-      --btn-size: clamp(54px, 8vmin, 84px);    /* button diameter */
-      --glow: 22px;                            /* glow blur */
-      --logo-size: clamp(220px, 34vmin, 420px);
-      --label-gap: 14px;
-      --footer-gap: clamp(18px, 3vmin, 26px);
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0a0a23;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
-      background: var(--bg);
-      color:#fff;
-      overflow-x:hidden;
+    .logo {
+      margin-top: 40px;
     }
 
-    .stage{
-      position:relative;
-      min-height:100dvh;
-      display:grid;
-      place-items:center;
-      padding: clamp(24px, 4vmin, 44px) 14px calc(90px + var(--footer-gap));
+    .logo img {
+      width: 300px;
+      max-width: 80%;
     }
 
-    /* Center logo */
-    .logo{
-      position:relative;
-      z-index:2;
-      width:var(--logo-size);
-      height:auto;
-      filter: drop-shadow(0 0 18px rgba(0,0,0,.4));
-      user-select:none;
-      pointer-events:none;
+    .button-ring {
+      position: relative;
+      margin: 40px auto;
+      width: 500px;
+      height: 500px;
     }
 
-    /* Ring container (absolute so we can freely place children) */
-    .ring{
-      position:absolute;
-      inset:0;
-      display:block;
-      pointer-events:none; /* buttons themselves are clickable */
-    }
-
-    /* Button */
-    .btn{
-      position:absolute;
-      width:var(--btn-size);
-      height:var(--btn-size);
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      background: #0b0b14;
-      color:#fff;
-      box-shadow: 0 0 var(--glow) 0 rgba(0,0,0,.65) inset,
-                  0 0 2px 1px rgba(255,255,255,.06);
-      transition: transform .15s ease-out, box-shadow .15s ease-out, filter .15s ease-out;
-      pointer-events:auto;
-      cursor:pointer;
-      will-change: transform, filter;
-      outline: none;
-      border:none;
-      text-decoration:none;
-    }
-    .btn i{font-size: clamp(18px, 3vmin, 26px)}
-
-    /* Colored glows */
-    .g-gold   { box-shadow: 0 0 var(--glow) 6px rgba(255,196,0,.45), inset 0 0 12px rgba(255,255,255,.05); }
-    .g-blue   { box-shadow: 0 0 var(--glow) 6px rgba( 64,148,255,.45), inset 0 0 12px rgba(255,255,255,.05); }
-    .g-red    { box-shadow: 0 0 var(--glow) 6px rgba(255, 57,57,.48), inset 0 0 12px rgba(255,255,255,.05); }
-    .g-purple { box-shadow: 0 0 var(--glow) 6px rgba(208, 64,255,.45), inset 0 0 12px rgba(255,255,255,.05); }
-    .g-teal   { box-shadow: 0 0 var(--glow) 6px rgba( 55,255,238,.40), inset 0 0 12px rgba(255,255,255,.05); }
-    .g-green  { box-shadow: 0 0 var(--glow) 6px rgba( 39,255,116,.45), inset 0 0 12px rgba(255,255,255,.05); }
-    .g-orange { box-shadow: 0 0 var(--glow) 6px rgba(255,154,41,.48), inset 0 0 12px rgba(255,255,255,.05); }
-    .g-white  { box-shadow: 0 0 var(--glow) 6px rgba(255,255,255,.30), inset 0 0 12px rgba(255,255,255,.05); }
-
-    .btn:hover{ transform: translate(-50%,-50%) scale(1.06) }
-    .btn:active{ transform: translate(-50%,-50%) scale(.94) }
-
-    /* Hover label (desktop only) */
-    .btn .label{
-      position:absolute;
-      top: calc(100% + var(--label-gap));
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,.65);
-      border: 1px solid rgba(255,255,255,.08);
-      padding: 6px 10px;
-      border-radius: 10px;
-      font-size: 12px;
-      letter-spacing:.4px;
-      opacity:0;
-      pointer-events:none;
-      white-space:nowrap;
-      transition: opacity .12s ease-out, transform .12s ease-out;
-    }
-    @media (hover:hover){
-      .btn:hover .label{
-        opacity:1;
-        transform: translate(-50%, 0);
-      }
-    }
-
-    /* Footer socials */
-    .footer{
-      position:fixed;
-      left:0; right:0; bottom:0;
-      display:flex;
-      justify-content:center;
-      gap: clamp(16px, 3.2vmin, 28px);
-      padding: var(--footer-gap) 0 calc(var(--footer-gap) + 6px);
-      background: linear-gradient(to top, rgba(0,0,0,.22), rgba(0,0,0,0));
-    }
-    .social{
-      width: clamp(46px, 6.3vmin, 64px);
-      height: clamp(46px, 6.3vmin, 64px);
+    .circle-button {
+      position: absolute;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
-      display:grid;
-      place-items:center;
-      color:#fff;
-      background:#0b0b14;
-      text-decoration:none;
-      box-shadow: 0 0 20px 6px rgba(255, 64, 192, .33);
-      transition: transform .12s ease-out;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: white;
+      font-size: 28px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
     }
-    .social i{font-size: clamp(18px, 2.6vmin, 24px)}
-    .social:hover{ transform: translateY(-3px) }
 
-    /* Keep everything centered nicely on very small heights */
-    @media (max-height: 720px){
-      :root{ --ring-radius: min(26vmin, 290px) }
+    .circle-button:hover {
+      transform: scale(1.1);
     }
-    @media (max-height: 600px){
-      :root{ --ring-radius: min(24vmin, 260px) }
+
+    /* Specific button glow colors */
+    .contact { box-shadow: 0 0 25px gold; }
+    .racing { box-shadow: 0 0 25px red; }
+    .hydro { box-shadow: 0 0 25px limegreen; }
+    .tools { box-shadow: 0 0 25px orange; }
+    .automation { box-shadow: 0 0 25px white; }
+    .security { box-shadow: 0 0 25px deepskyblue; }
+    .prototyping { box-shadow: 0 0 25px purple; }
+
+    /* Circle positioning */
+    .top    { top: 0; left: 50%; transform: translate(-50%, -50%); }
+    .top-left { top: 15%; left: 20%; transform: translate(-50%, -50%); }
+    .top-right { top: 15%; right: 20%; transform: translate(50%, -50%); }
+    .middle-left { top: 50%; left: 0; transform: translate(-50%, -50%); }
+    .middle-right { top: 50%; right: 0; transform: translate(50%, -50%); }
+    .bottom-left { bottom: 15%; left: 20%; transform: translate(-50%, 50%); }
+    .bottom-right { bottom: 15%; right: 20%; transform: translate(50%, 50%); }
+    .bottom { bottom: 0; left: 50%; transform: translate(-50%, 50%); }
+
+    footer {
+      margin-top: 50px;
+      padding: 40px 0;
+    }
+
+    .social {
+      display: inline-block;
+      margin: 0 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      text-decoration: none;
+      color: white;
+      box-shadow: 0 0 20px hotpink;
+      transition: transform 0.2s ease;
+    }
+
+    .social:hover {
+      transform: scale(1.2);
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
-  <main class="stage" id="stage">
-    <img src="transparentlogo.png" alt="Latchkey Technologies" class="logo" id="logo">
+  <div class="logo">
+    <img src="transparentlogo.png" alt="Latchkey Technologies Logo">
+  </div>
 
-    <!-- Absolute canvas for ring placement -->
-    <div class="ring" id="ring"></div>
+  <div class="button-ring">
+    <a href="contact.html" class="circle-button contact top"><i class="fas fa-phone"></i></a>
+    <a href="racing.html" class="circle-button racing top-right"><i class="fas fa-flag-checkered"></i></a>
+    <a href="hydro.html" class="circle-button hydro middle-right"><i class="fas fa-seedling"></i></a>
+    <a href="tools.html" class="circle-button tools bottom-right"><i class="fas fa-wrench"></i></a>
+    <a href="prototyping.html" class="circle-button prototyping bottom"><i class="fas fa-cubes"></i></a>
+    <a href="security.html" class="circle-button security bottom-left"><i class="fas fa-shield-alt"></i></a>
+    <a href="automation.html" class="circle-button automation middle-left"><i class="fas fa-robot"></i></a>
+  </div>
 
-    <!-- AUDIO -->
-    <audio id="sndHover" preload="auto" src="Gadget_Resonance.mp3"></audio>
-    <audio id="sndClick" preload="auto" src="Burst.mp3"></audio>
-  </main>
-
-  <!-- Social footer -->
-  <nav class="footer">
-    <a class="social" href="https://www.facebook.com/LatchkeyTechnologies" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
-    <a class="social" href="https://www.tiktok.com/@latchkeytechnologies" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
-    <a class="social" href="https://www.instagram.com/latchkeytechnologies/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
-    <a class="social" href="https://www.youtube.com/@LatchkeyTechnologies" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
-  </nav>
+  <footer>
+    <a href="https://facebook.com/LatchkeyTechnologies" class="social"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://tiktok.com/@latchkeytechnologies" class="social"><i class="fab fa-tiktok"></i></a>
+    <a href="https://instagram.com/latchkeytechnologies" class="social"><i class="fab fa-instagram"></i></a>
+    <a href="https://youtube.com/@LatchkeyTechnologies" class="social"><i class="fab fa-youtube"></i></a>
+  </footer>
 
   <script>
-    // --- DATA: 8 category buttons in ring order (clockwise from top) ---
-    const buttons = [
-      { href: "contact.html",     icon: "fa-solid fa-phone",      label: "Contact Us",           glow: "g-gold"   },
-      { href: "racing.html",      icon: "fa-solid fa-flag-checkered", label: "Latchkey Racing",   glow: "g-red"    },
-      { href: "prototyping.html", icon: "fa-solid fa-cube",       label: "Prototyping & Production", glow: "g-purple"},
-      { href: "hydro.html",       icon: "fa-solid fa-seedling",   label: "Latchkey Hydro",       glow: "g-green"  },
-      { href: "tools.html",       icon: "fa-solid fa-wrench",     label: "Latchkey Tools",       glow: "g-orange" },
-      { href: "automation.html",  icon: "fa-solid fa-gears",      label: "Latchkey Automation",  glow: "g-white"  },
-      { href: "security.html",    icon: "fa-solid fa-shield-halved", label: "Latchkey Security", glow: "g-blue"   },
-      { href: "index.html#top",   icon: "fa-solid fa-robot",      label: "About / Hub",          glow: "g-teal"   }, // center-bottom style
-    ];
+    document.querySelectorAll('.circle-button, .social').forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault(); // stop immediate navigation
+        const url = this.getAttribute('href');
+        const audio = new Audio('Burst.mp3');
+        audio.play();
 
-    const ringEl = document.getElementById('ring');
-    const stage  = document.getElementById('stage');
-    const sndHover = document.getElementById('sndHover');
-    const sndClick = document.getElementById('sndClick');
-
-    // Render buttons
-    buttons.forEach((b, i) => {
-      const a = document.createElement('a');
-      a.className = `btn ${b.glow}`;
-      a.href = b.href;
-      a.setAttribute('aria-label', b.label);
-      a.innerHTML = `<i class="${b.icon}"></i><span class="label">${b.label}</span>`;
-      ringEl.appendChild(a);
-
-      // Hover sound only on devices that support hover
-      const canHover = window.matchMedia('(hover: hover)').matches;
-      if (canHover){
-        a.addEventListener('mouseenter', () => {
-          try { sndHover.currentTime = 0; sndHover.play().catch(()=>{}); } catch(e){}
-        });
-      }
-
-      // Click sound then navigate
-      a.addEventListener('click', (e) => {
-        // same-tab pages only delay; external targets (like #top) skip
-        const isSameTab = !(a.target === '_blank');
-        try { sndClick.currentTime = 0; sndClick.play().catch(()=>{}); } catch(e){}
-        if (isSameTab){
-          e.preventDefault();
-          setTimeout(()=>{ window.location.href = a.href; }, 160); // quick, but audible
-        }
+        // navigate once sound ends or after fallback timeout
+        audio.onended = () => { window.location.href = url; };
+        setTimeout(() => { window.location.href = url; }, 500);
       });
     });
-
-    // Position buttons in a circle around the logo (responsive)
-    function positionRing(){
-      const rect = stage.getBoundingClientRect();
-      const cx = rect.width  / 2;
-      const cy = rect.height / 2;
-
-      const radius = Math.min(
-        parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ring-radius')),
-        Math.min(cx, cy) - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--btn-size'))/2) - 12
-      );
-
-      const N = buttons.length;
-      // start angle so the top button is exactly above the logo
-      const start = -90; // degrees (top)
-      [...ringEl.children].forEach((el, i) => {
-        const ang = (start + (360/N)*i) * Math.PI/180;
-        const x = cx + radius * Math.cos(ang);
-        const y = cy + radius * Math.sin(ang);
-        el.style.left = `${x}px`;
-        el.style.top  = `${y}px`;
-        el.style.transform = 'translate(-50%,-50%)';
-      });
-    }
-
-    // Initial + on resize
-    positionRing();
-    addEventListener('resize', positionRing);
-    addEventListener('orientationchange', positionRing);
   </script>
 </body>
 </html>
