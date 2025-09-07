@@ -1,91 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Latchkey Technologies</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  </head>
-  <body>
-    <!-- LOGO -->
-    <div class="logo">
-      <img src="logo.png" alt="Latchkey Technologies Logo" />
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Latchkey Technologies</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #0b0b27;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
 
-    <!-- RING OF 8 -->
-    <div class="ring" aria-hidden="false">
-      <ul>
-        <!-- 1 Contact (gold) -->
-        <li style="--radius: var(--ring-radius-desktop);">
-          <a class="btn gold" href="contact.html" data-label="Contact Us" aria-label="Contact Us">
-            <img src="icons/phone.svg" alt="Contact Icon" />
-          </a>
-        </li>
+    .logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
 
-        <!-- 2 Racing (red) -->
-        <li style="--radius: var(--ring-radius-desktop);">
-          <a class="btn red" href="racing.html" data-label="Racing" aria-label="Racing">
-            <img src="icons/flag.svg" alt="Racing Icon" />
-          </a>
-        </li>
+    .logo img {
+      width: 250px;
+    }
 
-        <!-- 3 Labs (green) -->
-        <li style="--radius: var(--ring-radius-desktop);">
-          <a class="btn green" href="labs.html" data-label="Labs" aria-label="Labs">
-            <img src="icons/dna.svg" alt="Labs Icon" />
-          </a>
-        </li>
+    .ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
 
-        <!-- 4 Shop (purple) -->
-        <li style="--radius: var(--ring-radius-desktop);">
-          <a class="btn purple" href="shop.html" data-label="Shop" aria-label="Shop">
-            <img src="icons/shirt.svg" alt="Shop Icon" />
-          </a>
-        </li>
+    .ring li {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
 
-        <!-- 5 Projects (blue) -->
-        <li style="--radius: var(--ring-radius-desktop);">
-          <a class="btn blue" href="projects.html" data-label="Projects" aria-label="Projects">
-            <img src="icons/shield.svg" alt="Projects Icon" />
-          </a>
-        </li>
+    .ring li img {
+      width: 28px;
+      height: 28px;
+    }
 
-        <!-- 6 Tools (orange) -->
-        <li style="--radius: var(--ring-radius-desktop);">
-          <a class="btn orange" href="tools.html" data-label="Tools" aria-label="Tools">
-            <img src="icons/wrench.svg" alt="Tools Icon" />
-          </a>
-        </li>
+    .ring li:nth-child(1) { top: 0%; left: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 20px gold; }
+    .ring li:nth-child(2) { top: 18%; left: 82%; transform: translate(-50%, -50%); box-shadow: 0 0 20px deepskyblue; }
+    .ring li:nth-child(3) { top: 50%; left: 100%; transform: translate(-50%, -50%); box-shadow: 0 0 20px orange; }
+    .ring li:nth-child(4) { top: 82%; left: 82%; transform: translate(-50%, -50%); box-shadow: 0 0 20px red; }
+    .ring li:nth-child(5) { top: 100%; left: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 20px purple; }
+    .ring li:nth-child(6) { top: 82%; left: 18%; transform: translate(-50%, -50%); box-shadow: 0 0 20px limegreen; }
+    .ring li:nth-child(7) { top: 50%; left: 0%; transform: translate(-50%, -50%); box-shadow: 0 0 20px hotpink; }
+    .ring li:nth-child(8) { top: 18%; left: 18%; transform: translate(-50%, -50%); box-shadow: 0 0 20px lightgray; }
 
-        <!-- 7 AI (teal) -->
-        <li style="--radius: var(--ring-radius-desktop);">
-          <a class="btn teal" href="ai.html" data-label="AI" aria-label="AI">
-            <img src="icons/brain.svg" alt="AI Icon" />
-          </a>
-        </li>
+    .social {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+    }
 
-        <!-- 8 Media (pink) -->
-        <li style="--radius: var(--ring-radius-desktop);">
-          <a class="btn pink" href="media.html" data-label="Media" aria-label="Media">
-            <img src="icons/camera.svg" alt="Media Icon" />
-          </a>
-        </li>
-      </ul>
-    </div>
+    .social img {
+      width: 30px;
+      height: 30px;
+      filter: drop-shadow(0 0 5px hotpink);
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="logo.png" alt="Latchkey Technologies Logo">
+  </div>
 
-    <!-- SOCIALS -->
-    <footer>
-      <div class="social-icons">
-        <a href="#" class="social"><img src="icons/facebook.svg" alt="Facebook" /></a>
-        <a href="#" class="social"><img src="icons/tiktok.svg" alt="TikTok" /></a>
-        <a href="#" class="social"><img src="icons/instagram.svg" alt="Instagram" /></a>
-        <a href="#" class="social"><img src="icons/youtube.svg" alt="YouTube" /></a>
-      </div>
-    </footer>
+  <ul class="ring">
+    <li><img src="icon1.png" alt="Contact"></li>
+    <li><img src="icon2.png" alt="Security"></li>
+    <li><img src="icon3.png" alt="Phone"></li>
+    <li><img src="icon4.png" alt="Email"></li>
+    <li><img src="icon5.png" alt="Media"></li>
+    <li><img src="icon6.png" alt="About"></li>
+    <li><img src="icon7.png" alt="Shop"></li>
+    <li><img src="icon8.png" alt="Settings"></li>
+  </ul>
 
-    <!-- AUDIO -->
-    <audio id="hoverSound" src="audio/click.mp3" preload="auto"></audio>
-    <script src="script.js"></script>
-  </body>
+  <div class="social">
+    <img src="facebook.png" alt="Facebook">
+    <img src="tiktok.png" alt="TikTok">
+    <img src="instagram.png" alt="Instagram">
+    <img src="youtube.png" alt="YouTube">
+  </div>
+</body>
 </html>
