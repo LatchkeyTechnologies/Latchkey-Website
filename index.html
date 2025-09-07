@@ -1,126 +1,242 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Latchkey Technologies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
-    body {
-      margin: 0;
-      background-color: #0d0d2b;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      overflow: hidden;
-      font-family: sans-serif;
+    :root{
+      --bg: rgb(10,10,40);
+      --fg: #E9EEF7;
+
+      --ring-size: clamp(360px, 62vw, 600px);
+      --logo-size: clamp(200px, 42vw, 420px);
+
+      --btn-size: 64px;
+      --icon-scale: .52;
+      --ring-radius: calc(var(--ring-size) * .46);
+
+      --glow-strength: 1;
     }
 
-    .logo {
-      width: 150px;
-      z-index: 2;
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0; background:var(--bg); color:var(--fg);
+      font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      display:flex; flex-direction:column; min-height:100%;
     }
 
-    .icon-ring {
-      position: absolute;
-      width: 400px;
-      height: 400px;
+    /* Center stage */
+    .stage{
+      flex:1; display:grid; place-items:center;
+      /* a hair less top breathing room so footer can grow */
+      padding: 12px 24px 0;
+    }
+
+    .ring{
+      width:var(--ring-size); height:var(--ring-size);
+      position:relative; display:grid; place-items:center;
+    }
+    .logo{
+      width:var(--logo-size); height:auto;
+      filter:drop-shadow(0 8px 24px rgba(0,0,0,.35));
+    }
+
+    /* ===== METAL / BEZEL BUTTON ===== */
+    .btn{
+      --rim: rgba(255,255,255,.18);
+      --shadow: rgba(0,0,0,.45);
+      width: var(--btn-size); height: var(--btn-size);
       border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position: relative; display: inline-flex; align-items:center; justify-content:center;
+      color:#E9EEF7; text-decoration:none; opacity:.98; transform:translateZ(0);
+      transition: transform .15s ease, opacity .15s ease;
+    }
+    .btn::before{ /* outer rim */
+      content:""; position:absolute; inset:0; border-radius:50%;
+      background:
+        radial-gradient(120% 120% at 30% 30%, rgba(255,255,255,.20), rgba(255,255,255,0) 50%),
+        radial-gradient(120% 120% at 70% 70%, rgba(0,0,0,.30), rgba(0,0,0,0) 55%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.35));
+      box-shadow:
+        inset 0 1px 0 var(--rim),
+        inset 0 -6px 10px rgba(0,0,0,.35),
+        0 10px 20px rgba(0,0,0,.35);
+    }
+    .btn .disc{ /* inner disc */
+      content:""; position:absolute; inset:8%; border-radius:50%;
+      background:
+        radial-gradient(100% 100% at 30% 30%, rgba(255,255,255,.10), rgba(255,255,255,0) 60%),
+        radial-gradient(120% 120% at 70% 70%, rgba(0,0,0,.45), rgba(0,0,0,0) 60%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.45));
+      box-shadow:
+        inset 0 1px 2px rgba(255,255,255,.15),
+        inset 0 -6px 10px rgba(0,0,0,.45);
+    }
+    .btn i{ position:relative; z-index:1; font-size:calc(var(--btn-size)*var(--icon-scale)); line-height:1; text-shadow:0 1px 0 rgba(0,0,0,.35) }
+
+    /* continuous neon glow (always on) */
+    .btn::after{
+      content:""; position:absolute; inset:-6px; border-radius:50%;
+      box-shadow:
+        0 0 0 calc(1px * var(--glow-strength)) var(--glow, transparent),
+        0 0 calc(26px * var(--glow-strength)) calc(10px * var(--glow-strength)) var(--glow, transparent),
+        inset 0 10px 20px rgba(255,255,255,.06);
+      opacity:1; pointer-events:none;
     }
 
-    .icon-ring a {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background-color: #222;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 15px #fff;
-      transition: transform 0.3s;
+    /* ===== RING POSITIONING ===== */
+    .ring-nav{ position:absolute; inset:0; pointer-events:none }
+    .ring-btn{ --lift:0px; }
+    .ring-btn{
+      position:absolute; top:50%; left:50%; pointer-events:auto;
+      transform:
+        translate(-50%, -50%)
+        rotate(var(--angle))
+        translateY(calc(-1 * var(--ring-radius)))
+        rotate(calc(-1 * var(--angle)))
+        translateY(var(--lift));
+    }
+    .ring-btn:hover{ --lift:-2px; opacity:1; }
+
+    /* Tooltip label tied to EACH button (desktop hover) */
+    .ring-btn::tooltip{ display:none } /* just to reserve the name in comments */
+    .ring-btn::after,
+    .ring-btn::before { pointer-events:none } /* keep clicks clean */
+
+    .ring-btn .label{
+      position:absolute; left:50%; top:calc(100% + 10px); transform:translateX(-50%);
+      font-weight:700; letter-spacing:.04em; white-space:nowrap;
+      color:var(--glow, #cfe7ff);
+      text-shadow:0 0 8px currentColor, 0 0 18px currentColor;
+      opacity:0; transition:opacity .12s ease;
+    }
+    .ring-btn:hover .label{ opacity:1 }
+
+    .a0{--angle:0deg} .a45{--angle:45deg} .a90{--angle:90deg} .a135{--angle:135deg}
+    .a180{--angle:180deg} .a225{--angle:225deg} .a270{--angle:270deg} .a315{--angle:315deg}
+
+    /* ===== COLOR MAP for glows ===== */
+    .gold   { --glow:#FFC200 }
+    .green  { --glow:#00FF88 }
+    .red    { --glow:#FF3B3B }
+    .orange { --glow:#FFA43B }
+    .warm   { --glow:#FFF0CC }
+    .blue   { --glow:#5CC3FF }
+    .purple { --glow:#C84BFF }
+    .hotpink{ --glow:#FF4BD0 }
+
+    @media (max-width:420px){
+      :root{ --btn-size:56px; --ring-radius:calc(var(--ring-size)*.44) }
     }
 
-    .icon-ring a img {
-      width: 32px;
-      height: 32px;
-      filter: invert(1);
+    /* ===== Footer row (taller with bottom-safe padding) ===== */
+    footer.social{
+      margin-top:auto;
+      padding: 34px 24px calc(44px + env(safe-area-inset-bottom)); /* taller + iPhone safe area */
+      display:flex; width:100%;
+      max-width: var(--ring-size);
+      margin-left:auto; margin-right:auto;
+      justify-content: space-between; gap:32px;
+      background:transparent; border-top:none;
     }
-
-    .icon-ring a:hover {
-      transform: scale(1.2);
-    }
-
-    /* 8 icon positions */
-    .icon-ring a:nth-child(1) { transform: rotate(0deg) translate(200px) rotate(0deg); }
-    .icon-ring a:nth-child(2) { transform: rotate(45deg) translate(200px) rotate(-45deg); }
-    .icon-ring a:nth-child(3) { transform: rotate(90deg) translate(200px) rotate(-90deg); }
-    .icon-ring a:nth-child(4) { transform: rotate(135deg) translate(200px) rotate(-135deg); }
-    .icon-ring a:nth-child(5) { transform: rotate(180deg) translate(200px) rotate(-180deg); }
-    .icon-ring a:nth-child(6) { transform: rotate(225deg) translate(200px) rotate(-225deg); }
-    .icon-ring a:nth-child(7) { transform: rotate(270deg) translate(200px) rotate(-270deg); }
-    .icon-ring a:nth-child(8) { transform: rotate(315deg) translate(200px) rotate(-315deg); }
-
-    .footer-icons {
-      position: absolute;
-      bottom: 40px;
-      display: flex;
-      justify-content: center;
-      gap: 60px;
-    }
-
-    .footer-icons a {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background-color: #222;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 15px #f0f;
-      transition: transform 0.3s;
-    }
-
-    .footer-icons a:hover {
-      transform: scale(1.2);
-    }
-
-    .footer-icons img {
-      width: 32px;
-      height: 32px;
-      filter: invert(1);
-    }
+    footer.social .btn:hover{ transform: translateY(-2px); opacity:1; }
   </style>
 </head>
-
 <body>
-  <div class="icon-ring">
-    <a href="#"><img src="icons/a.png" alt="A"></a>
-    <a href="#"><img src="icons/b.png" alt="B"></a>
-    <a href="#"><img src="icons/c.png" alt="C"></a>
-    <a href="#"><img src="icons/d.png" alt="D"></a>
-    <a href="#"><img src="icons/e.png" alt="E"></a>
-    <a href="#"><img src="icons/f.png" alt="F"></a>
-    <a href="#"><img src="icons/g.png" alt="G"></a>
-    <a href="#"><img src="icons/h.png" alt="H"></a>
-  </div>
+  <!-- Click sound only (mobile friendly) -->
+  <audio id="sndClick" src="Burst.mp3" preload="auto"></audio>
 
-  <img class="logo" src="latchkey_logo.png" alt="Latchkey Logo">
+  <main class="stage">
+    <div class="ring">
+      <img class="logo" src="transparentlogo.png" alt="Latchkey Technologies Logo"/>
 
-  <div class="footer-icons">
-    <a href="#"><img src="icons/facebook.png" alt="Facebook"></a>
-    <a href="#"><img src="icons/tiktok.png" alt="TikTok"></a>
-    <a href="#"><img src="icons/instagram.png" alt="Instagram"></a>
-    <a href="#"><img src="icons/youtube.png" alt="YouTube"></a>
-  </div>
+      <!-- Orbit buttons with per-button labels -->
+      <nav class="ring-nav" aria-label="Business categories">
+        <a href="contact.html"      class="btn ring-btn a0   gold"    aria-label="Contact">
+          <span class="disc"></span><i class="fas fa-phone"></i>
+          <span class="label">Contact Us</span>
+        </a>
+
+        <a href="racing.html"       class="btn ring-btn a45  red"     aria-label="Racing">
+          <span class="disc"></span><i class="fas fa-flag-checkered"></i>
+          <span class="label">Latchkey Racing</span>
+        </a>
+
+        <a href="hydro.html"        class="btn ring-btn a90  green"   aria-label="Hydro">
+          <span class="disc"></span><i class="fas fa-seedling"></i>
+          <span class="label">Latchkey Hydro</span>
+        </a>
+
+        <a href="tools.html"        class="btn ring-btn a135 orange"  aria-label="Tools">
+          <span class="disc"></span><i class="fas fa-screwdriver-wrench"></i>
+          <span class="label">Latchkey Tools</span>
+        </a>
+
+        <a href="automation.html"   class="btn ring-btn a180 warm"    aria-label="Automation">
+          <span class="disc"></span><i class="fas fa-robot"></i>
+          <span class="label">Latchkey Automation</span>
+        </a>
+
+        <a href="security.html"     class="btn ring-btn a225 blue"    aria-label="Security">
+          <span class="disc"></span><i class="fas fa-shield-halved"></i>
+          <span class="label">Latchkey Security</span>
+        </a>
+
+        <a href="prototyping.html"  class="btn ring-btn a270 purple"  aria-label="Prototyping">
+          <span class="disc"></span><i class="fas fa-cubes"></i>
+          <span class="label">Prototyping & Production</span>
+        </a>
+
+        <a href="merch.html"        class="btn ring-btn a315 orange"  aria-label="Merch">
+          <span class="disc"></span><i class="fas fa-shirt"></i>
+          <span class="label">Merch</span>
+        </a>
+      </nav>
+    </div>
+  </main>
+
+  <!-- Social buttons: hot pink glow, more space below -->
+  <footer class="social" aria-label="Social links">
+    <a class="btn hotpink" href="https://www.facebook.com/LatchkeyTechnologies"   target="_blank" rel="noopener" aria-label="Facebook"><span class="disc"></span><i class="fab fa-facebook-f"></i></a>
+    <a class="btn hotpink" href="https://www.tiktok.com/@latchkeytechnologies"    target="_blank" rel="noopener" aria-label="TikTok"><span class="disc"></span><i class="fab fa-tiktok"></i></a>
+    <a class="btn hotpink" href="https://www.instagram.com/latchkeytechnologies"  target="_blank" rel="noopener" aria-label="Instagram"><span class="disc"></span><i class="fab fa-instagram"></i></a>
+    <a class="btn hotpink" href="https://www.youtube.com/@LatchkeyTechnologies"   target="_blank" rel="noopener" aria-label="YouTube"><span class="disc"></span><i class="fab fa-youtube"></i></a>
+  </footer>
+
+  <script>
+    // Click sound only (works on desktop + mobile)
+    function play(el){
+      try{
+        const c = el.cloneNode(true);
+        c.currentTime = 0;
+        c.play().catch(()=>{});
+      }catch{}
+    }
+
+    const clickSnd = document.getElementById('sndClick');
+
+    function wire(el){
+      el.addEventListener('pointerdown', () => play(clickSnd));    // fire sound immediately
+      el.addEventListener('click', (e) => {                         // navigate a beat later
+        const href = el.getAttribute('href');
+        if (!href || href === '#') return;
+        e.preventDefault();
+        const target = el.getAttribute('target');
+        setTimeout(() => {
+          if (target === '_blank') {
+            window.open(href, el.getAttribute('rel') || 'noopener');
+          } else {
+            window.location.href = href;
+          }
+        }, 160);
+      });
+    }
+
+    document.querySelectorAll('.ring-btn, footer.social .btn').forEach(wire);
+  </script>
 </body>
-
 </html>
