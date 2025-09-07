@@ -5,15 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Latchkey Technologies</title>
   <style>
-    body {
+    html, body {
       margin: 0;
-      background-color: #0b0b27;
+      padding: 0;
+      background-color: black;
       color: white;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
+      font-family: sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .logo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -21,86 +30,94 @@
       z-index: 1;
     }
 
-    .logo img {
-      width: 250px;
-    }
-
-    .ring {
+    ul.button-ring {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
+      width: 400px;
+      height: 400px;
       list-style: none;
       margin: 0;
       padding: 0;
     }
 
-    .ring li {
+    ul.button-ring li {
       position: absolute;
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      background: black;
+      background: #111;
+      border: 2px solid white;
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .ring li img {
-      width: 28px;
-      height: 28px;
+    ul.button-ring li:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255,255,255,0.6);
     }
 
-    .ring li:nth-child(1) { top: 0%; left: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 20px gold; }
-    .ring li:nth-child(2) { top: 18%; left: 82%; transform: translate(-50%, -50%); box-shadow: 0 0 20px deepskyblue; }
-    .ring li:nth-child(3) { top: 50%; left: 100%; transform: translate(-50%, -50%); box-shadow: 0 0 20px orange; }
-    .ring li:nth-child(4) { top: 82%; left: 82%; transform: translate(-50%, -50%); box-shadow: 0 0 20px red; }
-    .ring li:nth-child(5) { top: 100%; left: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 20px purple; }
-    .ring li:nth-child(6) { top: 82%; left: 18%; transform: translate(-50%, -50%); box-shadow: 0 0 20px limegreen; }
-    .ring li:nth-child(7) { top: 50%; left: 0%; transform: translate(-50%, -50%); box-shadow: 0 0 20px hotpink; }
-    .ring li:nth-child(8) { top: 18%; left: 18%; transform: translate(-50%, -50%); box-shadow: 0 0 20px lightgray; }
-
-    .social {
+    .bottom-icons {
       position: absolute;
-      bottom: 20px;
+      bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 20px;
+      justify-content: center;
+      gap: 60px;
     }
 
-    .social img {
+    .bottom-icons a {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #111;
+      border: 2px solid white;
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .bottom-icons a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255,255,255,0.6);
+    }
+
+    .bottom-icons img {
       width: 30px;
       height: 30px;
-      filter: drop-shadow(0 0 5px hotpink);
     }
   </style>
 </head>
 <body>
-  <div class="logo">
-    <img src="logo.png" alt="Latchkey Technologies Logo">
-  </div>
+  <!-- Central Logo -->
+  <img class="logo" src="logo.png" alt="Latchkey Logo" />
 
-  <ul class="ring">
-    <li><img src="icon1.png" alt="Contact"></li>
-    <li><img src="icon2.png" alt="Security"></li>
-    <li><img src="icon3.png" alt="Phone"></li>
-    <li><img src="icon4.png" alt="Email"></li>
-    <li><img src="icon5.png" alt="Media"></li>
-    <li><img src="icon6.png" alt="About"></li>
-    <li><img src="icon7.png" alt="Shop"></li>
-    <li><img src="icon8.png" alt="Settings"></li>
+  <!-- Ring of Buttons -->
+  <ul class="button-ring">
+    <li style="top: 0%; left: 50%; transform: translate(-50%, -50%);">A</li>
+    <li style="top: 18%; left: 82%; transform: translate(-50%, -50%);">B</li>
+    <li style="top: 50%; left: 100%; transform: translate(-50%, -50%);">C</li>
+    <li style="top: 82%; left: 82%; transform: translate(-50%, -50%);">D</li>
+    <li style="top: 100%; left: 50%; transform: translate(-50%, -50%);">E</li>
+    <li style="top: 82%; left: 18%; transform: translate(-50%, -50%);">F</li>
+    <li style="top: 50%; left: 0%; transform: translate(-50%, -50%);">G</li>
+    <li style="top: 18%; left: 18%; transform: translate(-50%, -50%);">H</li>
   </ul>
 
-  <div class="social">
-    <img src="facebook.png" alt="Facebook">
-    <img src="tiktok.png" alt="TikTok">
-    <img src="instagram.png" alt="Instagram">
-    <img src="youtube.png" alt="YouTube">
+  <!-- Bottom Social Icons -->
+  <div class="bottom-icons">
+    <a href="#"><img src="facebook.png" alt="Facebook"></a>
+    <a href="#"><img src="twitter.png" alt="Twitter"></a>
+    <a href="#"><img src="instagram.png" alt="Instagram"></a>
+    <a href="#"><img src="youtube.png" alt="YouTube"></a>
   </div>
 </body>
 </html>
