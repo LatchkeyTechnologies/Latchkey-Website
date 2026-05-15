@@ -6,89 +6,150 @@
 <title>About | Pierce Fab Co.</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+
+/* =========================================
+   RESET
+========================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* =========================================
+   VARIABLES
+========================================= */
 
 :root{
     --black:#050505;
     --gold:#b68435;
     --white:#f4efe7;
+    --text:#ddd5c8;
 }
 
+/* =========================================
+   BODY
+========================================= */
+
 body{
-    background:#050505;
+    background:var(--black);
     color:var(--white);
     font-family:Arial, Helvetica, sans-serif;
     overflow-x:hidden;
 }
 
+/* =========================================
+   PAGE BACKGROUND
+========================================= */
+
 .page-bg{
-    min-height:100vh;
     position:relative;
-    background:#050505;
+    min-height:100vh;
     overflow:hidden;
+    background:#050505;
 }
+
+/* Blueprint image */
 
 .page-bg::before{
     content:"";
     position:absolute;
     inset:0;
+
     background-image:url("frame-blueprint-sepia.jpg");
     background-size:90%;
-    background-position:center 70px;
+    background-position:center 80px;
     background-repeat:no-repeat;
-    opacity:.58;
-    filter:brightness(1.25) contrast(1.15) sepia(.5);
+
+    opacity:.62;
+
+    filter:
+        brightness(1.28)
+        contrast(1.15)
+        sepia(.55);
+
     mix-blend-mode:screen;
+
     z-index:0;
     pointer-events:none;
 }
+
+/* Dark overlay */
 
 .page-bg::after{
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(
-        to bottom,
-        rgba(5,5,5,.42),
-        rgba(5,5,5,.72)
-    );
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(5,5,5,.42),
+            rgba(5,5,5,.72)
+        );
+
     z-index:1;
     pointer-events:none;
 }
+
+/* Make content stay above overlays */
 
 .page-bg > *{
     position:relative;
     z-index:2;
 }
 
+/* =========================================
+   HEADER
+========================================= */
+
 .header{
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     padding:28px 48px;
+
     border-bottom:1px solid rgba(255,255,255,.08);
-    background:#050505;
+
+    background:rgba(0,0,0,.72);
+
+    backdrop-filter:blur(6px);
 }
+
+/* =========================================
+   LOGO
+========================================= */
 
 .brand{
     font-family:Georgia, serif;
     font-size:56px;
     font-weight:900;
+
     line-height:.78;
     letter-spacing:2px;
 }
 
 .brand span{
     display:block;
+
     font-family:Arial, sans-serif;
     font-size:24px;
+
     letter-spacing:6px;
+
     margin-top:10px;
 }
+
+/* =========================================
+   NAVIGATION
+========================================= */
 
 .nav{
     display:flex;
     gap:28px;
+
     font-size:12px;
     letter-spacing:2px;
     text-transform:uppercase;
@@ -104,87 +165,154 @@ body{
     color:var(--gold);
 }
 
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
 .main{
     padding:110px 48px 120px;
-    max-width:1180px;
+    max-width:1200px;
 }
+
+/* =========================================
+   SECTION LABEL
+========================================= */
 
 .kicker{
     color:var(--gold);
+
     text-transform:uppercase;
     letter-spacing:4px;
+
     font-size:12px;
     font-weight:bold;
+
     margin-bottom:18px;
 }
 
-h1{
+/* =========================================
+   TITLE
+========================================= */
+
+.hero-title{
     font-size:84px;
     line-height:.88;
+
     text-transform:uppercase;
+
     margin-bottom:30px;
 }
+
+/* =========================================
+   GOLD ACCENT LINE
+========================================= */
 
 .gold-line{
     width:60px;
     height:2px;
+
     background:var(--gold);
+
     margin-bottom:36px;
 }
 
+/* =========================================
+   COPY
+========================================= */
+
 .copy{
-    max-width:900px;
-    color:#ddd5c8;
+    max-width:920px;
+
+    color:var(--text);
+
     font-size:18px;
     line-height:1.9;
-    background:rgba(5,5,5,.35);
-    padding:28px;
-    border-left:1px solid rgba(182,132,53,.45);
+
+    background:rgba(5,5,5,.28);
+
+    padding:34px;
+
+    border-left:1px solid rgba(182,132,53,.42);
+
+    backdrop-filter:blur(2px);
 }
+
+/* =========================================
+   CARD GRID
+========================================= */
 
 .cards{
     margin-top:70px;
+
     display:grid;
     grid-template-columns:1fr 1fr;
+
     gap:34px;
 }
 
+/* =========================================
+   CARDS
+========================================= */
+
 .card{
     border:1px solid rgba(255,255,255,.10);
-    background:rgba(5,5,5,.70);
-    backdrop-filter:blur(3px);
+
+    background:rgba(5,5,5,.72);
+
     padding:36px;
+
+    backdrop-filter:blur(3px);
 }
 
 .card h2{
     text-transform:uppercase;
+
     font-size:28px;
+
     margin-bottom:18px;
 }
 
 .card p{
-    color:#ddd5c8;
+    color:var(--text);
+
     line-height:1.8;
+
     font-size:15px;
 }
 
+/* =========================================
+   FOOTER
+========================================= */
+
 .footer{
-    border-top:1px solid rgba(255,255,255,.08);
-    padding:24px 48px;
     display:flex;
     justify-content:space-between;
     flex-wrap:wrap;
+
     gap:18px;
+
+    padding:24px 48px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    background:rgba(0,0,0,.82);
+
     color:#cfc8bd;
+
     font-size:12px;
     letter-spacing:1px;
-    background:#050505;
 }
 
+/* =========================================
+   MOBILE
+========================================= */
+
 @media(max-width:900px){
+
     .header{
         flex-direction:column;
         gap:24px;
+
         padding:26px 20px;
     }
 
@@ -203,7 +331,7 @@ h1{
         padding:70px 26px 80px;
     }
 
-    h1{
+    .hero-title{
         font-size:54px;
     }
 
@@ -214,15 +342,22 @@ h1{
     .footer{
         flex-direction:column;
         text-align:center;
+
         padding:30px;
+    }
+
+    .copy{
+        padding:24px;
     }
 
     .page-bg::before{
         background-size:185%;
         background-position:center top;
-        opacity:.38;
+
+        opacity:.40;
     }
 }
+
 </style>
 </head>
 
@@ -230,83 +365,124 @@ h1{
 
 <div class="page-bg">
 
-<header class="header">
+    <!-- =====================================
+         HEADER
+    ====================================== -->
 
-    <div class="brand">
-        PIERCE
-        <span>FAB CO.</span>
-    </div>
+    <header class="header">
 
-    <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="builds.html">Builds</a>
-        <a href="chassis-offered.html">Chassis Offered</a>
-        <a href="swag.html">Swag</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-
-</header>
-
-<main class="main">
-
-    <div class="kicker">About Pierce Fab Co.</div>
-
-    <h1>Built Different. TEST</h1>
-
-    <div class="gold-line"></div>
-
-    <div class="copy">
-        <p>
-            After years of building chassis for other companies and even longer
-            as a master welder, in 2026 Kent McGlaun started his own chassis company.
-            Pierce Fab Co. builds custom chassis systems for classic Ford trucks.
-            Our focus is simple: take the trucks people already love and give them
-            the stance, structure, drivability, and performance they always deserved.
-        </p>
-
-        <br>
-
-        <p>
-            We are starting with Ford truck platforms because that is where our passion is.
-            Bumpsides, dentsides, OBS trucks, and the machines that shaped generations
-            of working-class horsepower. Old soul. Modern bones.
-        </p>
-    </div>
-
-    <div class="cards">
-
-        <div class="card">
-            <h2>Engineering First</h2>
-            <p>
-                Good fabrication starts before the first tube is cut.
-                Geometry, fitment, serviceability, strength,
-                and stance all matter. We build with intent,
-                not guesswork.
-            </p>
+        <div class="brand">
+            PIERCE
+            <span>FAB CO.</span>
         </div>
 
-        <div class="card">
-            <h2>Ford Truck Focus</h2>
-            <p>
-                Pierce Fab Co. is focused on classic Ford pickups first:
-                chassis packages, suspension systems,
-                custom fabrication, and rolling foundations
-                built for real street performance.
-            </p>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="builds.html">Builds</a>
+            <a href="chassis-offered.html">Chassis Offered</a>
+            <a href="swag.html">Swag</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+    </header>
+
+    <!-- =====================================
+         MAIN
+    ====================================== -->
+
+    <main class="main">
+
+        <div class="kicker">
+            About Pierce Fab Co.
         </div>
 
-    </div>
+        <h1 class="hero-title">
+            Built Different.
+        </h1>
 
-</main>
+        <div class="gold-line"></div>
 
-<footer class="footer">
-    <div>PIERCE FAB CO.</div>
-    <div>WEATHERFORD, TEXAS</div>
-    <div>(817) 555-0123</div>
-    <div>INFO@PIERCEFABCO.COM</div>
-    <div>© 2026 Pierce Fab Co., LLC</div>
-</footer>
+        <div class="copy">
+
+            <p>
+                After years of building chassis for other companies and even longer
+                as a master welder, in 2026 Kent McGlaun started his own chassis company.
+                Pierce Fab Co. builds custom chassis systems for classic Ford trucks.
+                Our focus is simple:
+                take the trucks people already love and give them the stance,
+                structure, drivability, and performance they always deserved.
+            </p>
+
+            <br>
+
+            <p>
+                We are starting with Ford truck platforms because that is where our passion is.
+                Bumpsides, dentsides, OBS trucks,
+                and the machines that shaped generations of working-class horsepower.
+                Old soul. Modern bones.
+            </p>
+
+        </div>
+
+        <!-- =================================
+             INFO CARDS
+        ================================== -->
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h2>
+                    Engineering First
+                </h2>
+
+                <p>
+                    Good fabrication starts before the first tube is cut.
+                    Geometry, fitment, serviceability,
+                    strength, and stance all matter.
+                    We build with intent, not guesswork.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h2>
+                    Ford Truck Focus
+                </h2>
+
+                <p>
+                    Pierce Fab Co. is focused on classic Ford pickups first:
+                    chassis packages,
+                    suspension systems,
+                    custom fabrication,
+                    and rolling foundations built for real street performance.
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+    <footer class="footer">
+
+        <div>PIERCE FAB CO.</div>
+
+        <div>WEATHERFORD, TEXAS</div>
+
+        <div>(817) 555-0123</div>
+
+        <div>INFO@PIERCEFABCO.COM</div>
+
+        <div>© 2026 Pierce Fab Co., LLC</div>
+
+    </footer>
 
 </div>
 
