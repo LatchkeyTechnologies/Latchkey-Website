@@ -111,7 +111,7 @@ body{
     background:#050505;
 }
 
-/* Background Blueprint */
+/* Blueprint Background */
 
 .contact-section::before{
     content:"";
@@ -120,8 +120,8 @@ body{
 
     background-image:url("frame-blueprint-sepia.jpg");
 
-    background-size:95%;
-    background-position:center bottom;
+    background-size:contain;
+    background-position:center center;
     background-repeat:no-repeat;
 
     opacity:.32;
@@ -137,7 +137,7 @@ body{
     pointer-events:none;
 }
 
-/* Dark overlay */
+/* Dark Overlay */
 
 .contact-section::after{
     content:"";
@@ -198,6 +198,10 @@ body{
     margin-bottom:40px;
 }
 
+/* =========================================
+   CONTACT GRID
+========================================= */
+
 .contact-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -228,6 +232,7 @@ body{
 .contact-info{
     display:flex;
     flex-direction:column;
+
     gap:22px;
 }
 
@@ -327,8 +332,8 @@ body{
     }
 
     .contact-section::before{
-        background-size:180%;
-        background-position:center bottom;
+        background-size:170%;
+        background-position:center center;
 
         opacity:.18;
     }
@@ -381,7 +386,7 @@ body{
 
         <div class="contact-grid">
 
-            <!-- LEFT -->
+            <!-- LEFT CARD -->
 
             <div class="contact-card">
 
@@ -410,7 +415,7 @@ body{
 
             </div>
 
-            <!-- RIGHT -->
+            <!-- RIGHT CARD -->
 
             <div class="contact-card">
 
@@ -423,14 +428,16 @@ body{
                     <p>
                         Whether you're planning a complete chassis build,
                         suspension upgrade, custom fabrication project,
-                        or a full custom truck, we'd love to hear about it.
+                        or a full custom truck,
+                        we'd love to hear about it.
                     </p>
 
                     <br>
 
                     <p>
                         Pierce Fab Co. specializes in classic Ford truck platforms
-                        built with modern engineering, clean fabrication,
+                        built with modern engineering,
+                        clean fabrication,
                         and real-world drivability in mind.
                     </p>
 
