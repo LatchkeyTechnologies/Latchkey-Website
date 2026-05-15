@@ -1,1 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1975-1979 | Pierce Fab Co.</title>
 
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --gold:#b68435;
+    --white:#f4efe7;
+    --text:#ddd5c8;
+}
+
+body{
+    background:#050505;
+    color:var(--white);
+    font-family:Arial, Helvetica, sans-serif;
+    overflow-x:hidden;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:28px 48px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    background:#050505;
+}
+
+.brand{
+    font-family:Georgia, serif;
+    font-size:56px;
+    font-weight:900;
+
+    line-height:.78;
+    letter-spacing:2px;
+}
+
+.brand span{
+    display:block;
+
+    font-family:Arial, sans-serif;
+    font-size:24px;
+
+    letter-spacing:6px;
+
+    margin-top:10px;
+}
+
+.nav{
+    display:flex;
+    gap:28px;
+
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.nav a{
+    color:var(--white);
+    text-decoration:none;
+
+    transition:.25s;
+}
+
+.nav a:hover{
+    color:var(--gold);
+}
+
+/* =========================================
+   STAGE
+========================================= */
+
+.stage{
+    position:relative;
+
+    overflow:hidden;
+
+    min-height:calc(100vh - 170px);
+
+    background:#050505;
+}
+
+/* Blueprint Background */
+
+.stage::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background-image:url("frame-blueprint-sepia.jpg");
+
+    background-size:1400px auto;
+    background-position:center center;
+    background-repeat:no-repeat;
+
+    opacity:.32;
+
+    filter:
+        brightness(1.15)
+        contrast(1.08)
+        sepia(.55);
+
+    mix-blend-mode:screen;
+
+    z-index:0;
+
+    pointer-events:none;
+}
+
+/* Dark Overlay */
+
+.stage::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(5,5,5,.40),
+            rgba(5,5,5,.72)
+        );
+
+    z-index:1;
+
+    pointer-events:none;
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.main{
+    position:relative;
+    z-index:2;
+
+    width:100%;
+    max-width:1400px;
+
+    margin:0 auto;
+
+    padding:110px 48px 130px;
+}
+
+.kicker{
+    color:var(--gold);
+
+    text-transform:uppercase;
+    letter-spacing:4px;
+
+    font-size:12px;
+    font-weight:bold;
+
+    margin-bottom:18px;
+}
+
+.hero-title{
+    font-size:84px;
+    line-height:.88;
+
+    text-transform:uppercase;
+
+    margin-bottom:30px;
+}
+
+.gold-line{
+    width:60px;
+    height:2px;
+
+    background:var(--gold);
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    padding:24px 48px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    background:#050505;
+
+    color:#cfc8bd;
+
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:900px){
+
+    .header{
+        flex-direction:column;
+        gap:24px;
+
+        padding:26px 20px;
+    }
+
+    .brand{
+        text-align:center;
+        font-size:46px;
+    }
+
+    .nav{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:18px;
+    }
+
+    .main{
+        padding:70px 26px 90px;
+    }
+
+    .hero-title{
+        font-size:54px;
+    }
+
+    .footer{
+        flex-direction:column;
+        text-align:center;
+
+        padding:30px;
+    }
+
+    .stage::before{
+        background-size:185%;
+        background-position:center center;
+
+        opacity:.18;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="brand">
+        PIERCE
+        <span>FAB CO.</span>
+    </div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="builds.html">Builds</a>
+        <a href="chassis-offered.html">Chassis Offered</a>
+        <a href="swag.html">Swag</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+</header>
+
+<section class="stage">
+
+    <main class="main">
+
+        <div class="kicker">
+            Chassis Platform
+        </div>
+
+        <h1 class="hero-title">
+            1975-1979
+        </h1>
+
+        <div class="gold-line"></div>
+
+    </main>
+
+</section>
+
+<footer class="footer">
+
+    <div>PIERCE FAB CO.</div>
+
+    <div>WEATHERFORD, TEXAS</div>
+
+    <div>817-437-5938</div>
+
+    <div>© 2026 Pierce Fab Co., LLC</div>
+
+</footer>
+
+</body>
+</html>
