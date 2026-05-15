@@ -291,7 +291,380 @@ h1{
 
         <p>
             After years of building chassis for other companies and even
-            longer as a master welder, in 2026 Kent McGlaun started his own
+            longer as a master welder, in 2026 Kent McGlaun started his own<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Pierce Fab Co.</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --black:#050505;
+    --gold:#b68435;
+    --white:#f4efe7;
+}
+
+body{
+    background:#050505;
+    color:var(--white);
+    font-family:Arial, Helvetica, sans-serif;
+    overflow-x:hidden;
+}
+
+/* =========================================
+   BACKGROUND SYSTEM
+========================================= */
+
+.blueprint-bg{
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+    background:#050505;
+}
+
+.blueprint-bg::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background-image:url("frame-blueprint-sepia.jpg");
+
+    background-size:contain;
+    background-position:center center;
+    background-repeat:no-repeat;
+
+    opacity:.24;
+
+    filter:
+        brightness(1.05)
+        contrast(1.05)
+        sepia(.45);
+
+    mix-blend-mode:screen;
+
+    z-index:0;
+    pointer-events:none;
+}
+
+.blueprint-bg::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(5,5,5,.60),
+            rgba(5,5,5,.82)
+        );
+
+    z-index:1;
+    pointer-events:none;
+}
+
+.blueprint-bg > *{
+    position:relative;
+    z-index:2;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:28px 48px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    background:rgba(0,0,0,.45);
+    backdrop-filter:blur(4px);
+}
+
+.brand{
+    font-family:Georgia, serif;
+    font-size:56px;
+    font-weight:900;
+    line-height:.78;
+    letter-spacing:2px;
+}
+
+.brand span{
+    display:block;
+    font-family:Arial, sans-serif;
+    font-size:24px;
+    letter-spacing:6px;
+    margin-top:10px;
+}
+
+.nav{
+    display:flex;
+    gap:28px;
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.nav a{
+    color:var(--white);
+    text-decoration:none;
+    transition:.25s;
+}
+
+.nav a:hover{
+    color:var(--gold);
+}
+
+/* =========================================
+   MAIN
+========================================= */
+
+.main{
+    padding:110px 48px 120px;
+    max-width:1200px;
+}
+
+.kicker{
+    color:var(--gold);
+    text-transform:uppercase;
+    letter-spacing:4px;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:18px;
+}
+
+h1{
+    font-size:84px;
+    line-height:.88;
+    text-transform:uppercase;
+    margin-bottom:30px;
+}
+
+.gold-line{
+    width:60px;
+    height:2px;
+    background:var(--gold);
+    margin-bottom:36px;
+}
+
+.copy{
+    max-width:920px;
+    color:#ddd5c8;
+    font-size:18px;
+    line-height:1.95;
+}
+
+.cards{
+    margin-top:70px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:34px;
+}
+
+.card{
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.035);
+    backdrop-filter:blur(4px);
+    padding:36px;
+}
+
+.card h2{
+    text-transform:uppercase;
+    font-size:28px;
+    margin-bottom:18px;
+}
+
+.card p{
+    color:#ddd5c8;
+    line-height:1.85;
+    font-size:15px;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer{
+    border-top:1px solid rgba(255,255,255,.08);
+    padding:24px 48px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:18px;
+    color:#cfc8bd;
+    font-size:12px;
+    letter-spacing:1px;
+    background:rgba(0,0,0,.45);
+    backdrop-filter:blur(4px);
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:900px){
+
+    .header{
+        flex-direction:column;
+        gap:24px;
+        padding:26px 20px;
+    }
+
+    .brand{
+        text-align:center;
+        font-size:46px;
+    }
+
+    .nav{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:18px;
+    }
+
+    .main{
+        padding:70px 26px 80px;
+    }
+
+    h1{
+        font-size:54px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .footer{
+        flex-direction:column;
+        text-align:center;
+        padding:30px;
+    }
+
+    .blueprint-bg::before{
+        background-size:160%;
+        background-position:center top;
+        opacity:.18;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="blueprint-bg">
+
+<header class="header">
+
+    <div class="brand">
+        PIERCE
+        <span>FAB CO.</span>
+    </div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="builds.html">Builds</a>
+        <a href="chassis-offered.html">Chassis Offered</a>
+        <a href="swag.html">Swag</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+</header>
+
+<main class="main">
+
+    <div class="kicker">
+        About Pierce Fab Co.
+    </div>
+
+    <h1>
+        Built Different.
+    </h1>
+
+    <div class="gold-line"></div>
+
+    <div class="copy">
+
+        <p>
+            After years of building chassis for other companies and even longer
+            as a master welder, Pierce Fab Co. was founded around a simple idea:
+            build custom truck chassis the way they should have been built
+            from the beginning.
+        </p>
+
+        <br>
+
+        <p>
+            We are starting with Ford truck platforms because that is where
+            our passion is. Bumpsides, dentsides, OBS trucks,
+            and the machines that shaped generations of working-class horsepower.
+            Old soul. Modern bones.
+        </p>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h2>
+                Engineering First
+            </h2>
+
+            <p>
+                Good fabrication starts before the first tube is cut.
+                Geometry, fitment, serviceability, strength,
+                and stance all matter.
+                We build with intent, not guesswork.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>
+                Ford Truck Focus
+            </h2>
+
+            <p>
+                Pierce Fab Co. is focused on classic Ford pickups first:
+                chassis packages, suspension systems,
+                custom fabrication, and rolling foundations
+                built for real street performance.
+            </p>
+
+        </div>
+
+    </div>
+
+</main>
+
+<footer class="footer">
+
+    <div>PIERCE FAB CO.</div>
+
+    <div>WEATHERFORD, TEXAS</div>
+
+    <div>(817) 555-0123</div>
+
+    <div>INFO@PIERCEFABCO.COM</div>
+
+    <div>© 2026 Pierce Fab Co., LLC</div>
+
+</footer>
+
+</section>
+
+</body>
+</html>
             chassis company.
             
             Pierce Fab Co. builds custom chassis systems
