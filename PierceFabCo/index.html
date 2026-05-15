@@ -1,36 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pierce Fab Co.</title>
 
 <style>
-/* =========================
-   EASY EDIT SECTION
-========================= */
+*{margin:0;padding:0;box-sizing:border-box}
 
 :root{
-  --company-name-main:"PIERCE";
-  --company-name-sub:"FAB CO.";
-  --location:"WEATHERFORD, TEXAS";
-  --phone:"(817) 555-0123";
-  --email:"INFO@PIERCEFABCO.COM";
+  --black:#050505;
+  --cream:#eee7dc;
+  --gold:#b68435;
+  --white:#f4efe7;
 
-  --hero-image:url("https://images.unsplash.com/photo-1517520287167-4bbf64a00d66?q=80&w=1974&auto=format&fit=crop");
-  --lower-image:url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1883&auto=format&fit=crop");
-
-  --black:#070707;
-  --cream:#efe8dc;
-  --gold:#b8893d;
-  --white:#f7f2ea;
+  /* EASY IMAGE SWAPS */
+  --hero:url("hero-f100.jpg");
+  --feature:url("lower-f150.jpg");
 }
-
-/* =========================
-   BASE
-========================= */
-
-*{box-sizing:border-box;margin:0;padding:0}
 
 body{
   background:var(--black);
@@ -38,225 +25,240 @@ body{
   font-family:Arial, Helvetica, sans-serif;
 }
 
-a{color:inherit;text-decoration:none}
-
 .header{
-  position:absolute;
-  top:0;
-  width:100%;
-  z-index:5;
+  height:112px;
+  background:#050505;
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  padding:24px 5vw;
+  justify-content:space-between;
+  padding:0 48px;
 }
 
-.logo{
+.brand{
   font-family:Georgia, serif;
+  font-size:56px;
   font-weight:900;
-  letter-spacing:3px;
-  line-height:.85;
-  font-size:3.4rem;
+  line-height:.78;
+  letter-spacing:2px;
 }
 
-.logo span{
+.brand span{
   display:block;
-  font-family:Arial, sans-serif;
-  font-size:1.45rem;
-  letter-spacing:7px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:24px;
+  letter-spacing:6px;
   margin-top:10px;
 }
 
 .nav{
   display:flex;
   gap:34px;
-  font-size:.78rem;
+  font-size:12px;
   letter-spacing:2px;
   text-transform:uppercase;
+}
+
+.nav a{
+  color:var(--white);
+  text-decoration:none;
 }
 
 .hero{
-  min-height:760px;
+  min-height:560px;
+  display:grid;
+  grid-template-columns:38% 62%;
   background:
-    linear-gradient(to right, rgba(0,0,0,.92) 0%, rgba(0,0,0,.75) 34%, rgba(0,0,0,.18) 100%),
-    var(--hero-image);
+    linear-gradient(to right, rgba(0,0,0,.96), rgba(0,0,0,.72), rgba(0,0,0,.15)),
+    var(--hero);
   background-size:cover;
-  background-position:center;
-  display:flex;
-  align-items:center;
-  padding:150px 5vw 80px;
+  background-position:center right;
 }
 
-.hero-content{
-  max-width:480px;
-}
-
-.kicker{
-  color:var(--gold);
-  font-size:.78rem;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  margin-bottom:14px;
+.hero-text{
+  padding:80px 0 70px 48px;
+  max-width:440px;
 }
 
 h1{
-  font-size:4rem;
+  font-size:52px;
   line-height:.95;
   text-transform:uppercase;
-  margin-bottom:32px;
+  margin-bottom:28px;
+}
+
+.gold-line{
+  width:48px;
+  height:2px;
+  background:var(--gold);
+  margin:0 0 28px;
 }
 
 .hero p{
-  color:#ddd5c9;
-  font-size:1.05rem;
+  color:#ddd5c8;
+  font-size:16px;
   line-height:1.75;
-  margin-bottom:36px;
+  margin-bottom:34px;
 }
 
-.button{
+.btn{
   display:inline-block;
   border:1px solid var(--gold);
-  padding:17px 38px;
-  font-size:.78rem;
-  letter-spacing:2px;
+  padding:16px 34px;
+  color:var(--white);
+  text-decoration:none;
   text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:12px;
 }
 
 .intro{
   background:var(--cream);
   color:#111;
   text-align:center;
-  padding:78px 6vw 84px;
+  padding:54px 42px 62px;
+}
+
+.kicker{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:4px;
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:12px;
 }
 
 .intro h2{
-  font-size:2.25rem;
+  font-size:34px;
   text-transform:uppercase;
-  margin-bottom:20px;
+  margin-bottom:16px;
 }
 
-.intro p{
-  max-width:760px;
-  margin:0 auto 58px;
+.intro-text{
+  max-width:720px;
+  margin:0 auto 42px;
+  font-size:15px;
   line-height:1.7;
 }
 
 .services{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:34px;
   max-width:1100px;
   margin:auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:36px;
 }
 
-.service-icon{
-  font-size:2.7rem;
+.icon{
+  font-size:44px;
   margin-bottom:18px;
 }
 
 .service h3{
-  font-size:.95rem;
+  font-size:14px;
   text-transform:uppercase;
-  margin-bottom:12px;
+  margin-bottom:10px;
 }
 
 .service p{
-  font-size:.88rem;
-  margin:0;
+  font-size:13px;
+  line-height:1.55;
 }
 
-.feature{
+.lower{
+  background:#050505;
   display:grid;
-  grid-template-columns:32% 68%;
-  background:#070707;
-  padding:76px 5vw;
-  gap:42px;
+  grid-template-columns:28% 72%;
+  gap:38px;
+  padding:54px 48px;
   align-items:center;
 }
 
-.feature h2{
-  font-size:3rem;
+.lower h2{
+  font-size:42px;
   line-height:1;
   text-transform:uppercase;
-  margin:14px 0 28px;
+  margin:14px 0 26px;
 }
 
-.feature p{
-  color:#ddd5c9;
+.lower p{
+  color:#ddd5c8;
   line-height:1.75;
-  margin-bottom:32px;
+  font-size:15px;
+  margin-bottom:30px;
 }
 
-.truck-image{
-  min-height:430px;
-  background:
-    linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.1)),
-    var(--lower-image);
+.feature-img{
+  height:390px;
+  background:var(--feature);
   background-size:cover;
   background-position:center;
 }
 
 .footer{
   border-top:1px solid rgba(255,255,255,.12);
-  padding:28px 5vw;
+  background:#050505;
+  padding:24px 48px;
   display:flex;
   justify-content:space-between;
-  gap:20px;
+  gap:18px;
   flex-wrap:wrap;
-  color:#cfc7bb;
-  font-size:.78rem;
+  color:#cfc8bd;
+  font-size:12px;
   letter-spacing:1px;
 }
 
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:850px){
-
+/* PHONE */
+@media(max-width:800px){
   .header{
-    position:relative;
-    background:#050505;
+    height:auto;
     flex-direction:column;
-    gap:22px;
+    gap:24px;
+    padding:26px 20px;
   }
 
-  .logo{
-    font-size:2.8rem;
+  .brand{
     text-align:center;
+    font-size:46px;
   }
 
   .nav{
-    gap:18px;
     flex-wrap:wrap;
     justify-content:center;
+    gap:20px;
   }
 
   .hero{
-    min-height:auto;
-    padding:80px 7vw;
+    display:block;
+    min-height:620px;
     background-position:center;
   }
 
+  .hero-text{
+    padding:70px 26px;
+    max-width:100%;
+  }
+
   h1{
-    font-size:2.85rem;
+    font-size:42px;
   }
 
   .services{
     grid-template-columns:1fr;
   }
 
-  .feature{
+  .lower{
     grid-template-columns:1fr;
+    padding:44px 26px;
   }
 
-  .truck-image{
-    min-height:300px;
+  .feature-img{
+    height:320px;
   }
 
   .footer{
     flex-direction:column;
     text-align:center;
+    padding:28px;
   }
 }
 </style>
@@ -265,13 +267,14 @@ h1{
 <body>
 
 <header class="header">
-  <div class="logo">
+  <div class="brand">
     PIERCE
     <span>FAB CO.</span>
   </div>
 
   <nav class="nav">
     <a href="#">Home</a>
+    <a href="#">About</a>
     <a href="#">Builds</a>
     <a href="#">Services</a>
     <a href="#">Shop</a>
@@ -280,60 +283,59 @@ h1{
 </header>
 
 <section class="hero">
-  <div class="hero-content">
+  <div class="hero-text">
     <h1>Built By Hand.<br>Driven By Passion.</h1>
+    <div class="gold-line"></div>
 
     <p>
-      Pierce Fab Co. is a custom fabrication shop specializing in truck chassis,
-      suspension, and complete builds. From concept to creation, we build the
-      foundation for unforgettable rides.
+      Pierce Fab Co. is a custom fabrication shop specializing in chassis,
+      suspension, and complete builds. From concept to creation, we build
+      the foundation for unforgettable rides.
     </p>
 
-    <a class="button" href="#">See Our Builds</a>
+    <a class="btn" href="#">See Our Builds</a>
   </div>
 </section>
 
 <section class="intro">
   <div class="kicker">Precision. Performance. Pride.</div>
-
   <h2>Fabrication Is In Our Blood.</h2>
 
-  <p>
+  <p class="intro-text">
     We’re not just builders — we’re fabricators, problem solvers, and enthusiasts.
     Every project gets the same attention to detail we’d give our own.
   </p>
 
   <div class="services">
     <div class="service">
-      <div class="service-icon">▱</div>
+      <div class="icon">▱</div>
       <h3>Chassis Fabrication</h3>
       <p>Custom frames and chassis designed for performance and drivability.</p>
     </div>
 
     <div class="service">
-      <div class="service-icon">◉</div>
+      <div class="icon">◉</div>
       <h3>Suspension & Handling</h3>
       <p>Tailored suspension setups for the perfect balance of ride and control.</p>
     </div>
 
     <div class="service">
-      <div class="service-icon">⚙</div>
+      <div class="icon">⚙</div>
       <h3>Complete Builds</h3>
       <p>From rolling chassis to finished showstoppers — we build it all.</p>
     </div>
 
     <div class="service">
-      <div class="service-icon">⌁</div>
+      <div class="icon">⌁</div>
       <h3>Custom Fabrication</h3>
       <p>One-off parts, components, and solutions built to fit your vision.</p>
     </div>
   </div>
 </section>
 
-<section class="feature">
+<section class="lower">
   <div>
     <div class="kicker">Built With Purpose.</div>
-
     <h2>Real Cars.<br>Real People.</h2>
 
     <p>
@@ -341,10 +343,10 @@ h1{
       people who want something built right the first time.
     </p>
 
-    <a class="button" href="#">About Us</a>
+    <a class="btn" href="#">About Us</a>
   </div>
 
-  <div class="truck-image"></div>
+  <div class="feature-img"></div>
 </section>
 
 <footer class="footer">
@@ -352,7 +354,7 @@ h1{
   <div>WEATHERFORD, TEXAS</div>
   <div>(817) 555-0123</div>
   <div>INFO@PIERCEFABCO.COM</div>
-  <div>© 2026 Pierce Fab Co.</div>
+  <div>© 2026 Pierce Fab Co., LLC</div>
 </footer>
 
 </body>
