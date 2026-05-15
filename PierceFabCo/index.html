@@ -1,1 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pierce Fab Co.</title>
 
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            background:#0b0b0b;
+            color:#f5f1e8;
+            font-family:Arial, Helvetica, sans-serif;
+            overflow-x:hidden;
+        }
+
+        .hero{
+            position:relative;
+            min-height:100vh;
+            background:
+                linear-gradient(to right, rgba(0,0,0,.88) 28%, rgba(0,0,0,.25)),
+                url('https://images.unsplash.com/photo-1517520287167-4bbf64a00d66?q=80&w=1974&auto=format&fit=crop');
+            background-size:cover;
+            background-position:center;
+            display:flex;
+            align-items:center;
+            padding-left:8%;
+        }
+
+        .overlay{
+            max-width:650px;
+        }
+
+        .logo{
+            font-size:5rem;
+            font-weight:900;
+            line-height:.9;
+            letter-spacing:3px;
+            margin-bottom:20px;
+        }
+
+        .logo span{
+            display:block;
+            font-size:2rem;
+            letter-spacing:8px;
+            margin-top:10px;
+        }
+
+        .tagline{
+            font-size:4rem;
+            font-weight:900;
+            line-height:1;
+            margin-bottom:30px;
+            text-transform:uppercase;
+        }
+
+        .description{
+            font-size:1.15rem;
+            line-height:1.8;
+            color:#d2cec5;
+            margin-bottom:40px;
+            max-width:500px;
+        }
+
+        .button{
+            display:inline-block;
+            padding:18px 40px;
+            border:2px solid #c79a4a;
+            color:#f5f1e8;
+            text-decoration:none;
+            text-transform:uppercase;
+            letter-spacing:2px;
+            transition:.3s;
+        }
+
+        .button:hover{
+            background:#c79a4a;
+            color:#111;
+        }
+
+        .navbar{
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            padding:30px 60px;
+            display:flex;
+            justify-content:flex-end;
+            gap:40px;
+            z-index:100;
+        }
+
+        .navbar a{
+            color:#f5f1e8;
+            text-decoration:none;
+            text-transform:uppercase;
+            font-size:.9rem;
+            letter-spacing:2px;
+        }
+
+        .section{
+            padding:120px 10%;
+            background:#f3eee5;
+            color:#111;
+        }
+
+        .section h2{
+            font-size:3rem;
+            margin-bottom:20px;
+            text-transform:uppercase;
+        }
+
+        .section p{
+            max-width:900px;
+            line-height:1.9;
+            font-size:1.1rem;
+        }
+
+        .footer{
+            padding:40px;
+            background:#050505;
+            text-align:center;
+            color:#888;
+            font-size:.9rem;
+        }
+
+        @media(max-width:900px){
+
+            .logo{
+                font-size:3rem;
+            }
+
+            .tagline{
+                font-size:2.4rem;
+            }
+
+            .navbar{
+                justify-content:center;
+                gap:20px;
+                padding:20px;
+                flex-wrap:wrap;
+            }
+
+            .hero{
+                padding:120px 8% 80px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Builds</a>
+        <a href="#">Services</a>
+        <a href="#">Gallery</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <section class="hero">
+
+        <div class="overlay">
+
+            <div class="logo">
+                PIERCE
+                <span>FAB CO.</span>
+            </div>
+
+            <div class="tagline">
+                Built By Hand.<br>
+                Driven By Passion.
+            </div>
+
+            <div class="description">
+                Pierce Fab Co. specializes in custom truck chassis,
+                suspension systems, performance fabrication,
+                and complete ground-up builds for classic pickups.
+            </div>
+
+            <a class="button" href="#">
+                View Builds
+            </a>
+
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <h2>Fabrication Is In Our Blood.</h2>
+
+        <p>
+            From bump-side F100s to OBS Ford chassis builds,
+            Pierce Fab Co. creates modern performance foundations
+            underneath timeless truck designs. Our focus is
+            precision fabrication, suspension geometry,
+            craftsmanship, and building vehicles that feel as
+            good as they look.
+        </p>
+
+    </section>
+
+    <footer class="footer">
+        © 2026 Pierce Fab Co. — Weatherford, Texas
+    </footer>
+
+</body>
+</html>
