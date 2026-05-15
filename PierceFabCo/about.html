@@ -6,7 +6,12 @@
 <title>About | Pierce Fab Co.</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
 :root{
     --black:#050505;
@@ -21,6 +26,10 @@ body{
     overflow-x:hidden;
 }
 
+/* =========================================
+   BLUEPRINT BACKGROUND
+========================================= */
+
 .blueprint-bg{
     min-height:100vh;
     position:relative;
@@ -32,26 +41,49 @@ body{
     content:"";
     position:absolute;
     inset:0;
+
     background-image:url("frame-blueprint-sepia.jpg");
     background-size:cover;
     background-position:center;
-    opacity:.14;
-    filter:brightness(.75) contrast(.9);
+    background-repeat:no-repeat;
+
+    opacity:.30;
+
+    filter:
+        brightness(1.15)
+        contrast(1.1)
+        sepia(.35);
+
+    mix-blend-mode:screen;
+
     z-index:0;
+    pointer-events:none;
 }
 
 .blueprint-bg::after{
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(to bottom, rgba(5,5,5,.82), rgba(5,5,5,.96));
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(5,5,5,.55),
+            rgba(5,5,5,.82)
+        );
+
     z-index:1;
+    pointer-events:none;
 }
 
 .blueprint-bg > *{
     position:relative;
     z-index:2;
 }
+
+/* =========================================
+   HEADER
+========================================= */
 
 .header{
     display:flex;
@@ -88,15 +120,20 @@ body{
 .nav a{
     color:var(--white);
     text-decoration:none;
+    transition:.25s;
 }
 
 .nav a:hover{
     color:var(--gold);
 }
 
+/* =========================================
+   MAIN
+========================================= */
+
 .main{
     padding:110px 48px 120px;
-    max-width:1100px;
+    max-width:1200px;
 }
 
 .kicker{
@@ -123,7 +160,7 @@ h1{
 }
 
 .copy{
-    max-width:820px;
+    max-width:920px;
     color:#ddd5c8;
     font-size:18px;
     line-height:1.9;
@@ -137,8 +174,9 @@ h1{
 }
 
 .card{
-    border:1px solid rgba(255,255,255,.1);
-    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.03);
+    backdrop-filter:blur(2px);
     padding:36px;
 }
 
@@ -154,6 +192,10 @@ h1{
     font-size:15px;
 }
 
+/* =========================================
+   FOOTER
+========================================= */
+
 .footer{
     border-top:1px solid rgba(255,255,255,.08);
     padding:24px 48px;
@@ -166,7 +208,12 @@ h1{
     letter-spacing:1px;
 }
 
+/* =========================================
+   MOBILE
+========================================= */
+
 @media(max-width:900px){
+
     .header{
         flex-direction:column;
         gap:24px;
@@ -202,6 +249,7 @@ h1{
         padding:30px;
     }
 }
+
 </style>
 </head>
 
@@ -210,6 +258,7 @@ h1{
 <section class="blueprint-bg">
 
 <header class="header">
+
     <div class="brand">
         PIERCE
         <span>FAB CO.</span>
@@ -223,56 +272,89 @@ h1{
         <a href="swag.html">Swag</a>
         <a href="contact.html">Contact</a>
     </nav>
+
 </header>
 
 <main class="main">
-    <div class="kicker">About Pierce Fab Co.</div>
 
-    <h1>Built Different.</h1>
+    <div class="kicker">
+        About Pierce Fab Co.
+    </div>
+
+    <h1>
+        Built Different.
+    </h1>
 
     <div class="gold-line"></div>
 
     <div class="copy">
+
         <p>
-            Pierce Fab Co. builds custom chassis and suspension systems for classic Ford trucks.
-            Our focus is simple: take the trucks people already love and give them the stance,
+            Pierce Fab Co. builds custom chassis and suspension systems
+            for classic Ford trucks. Our focus is simple:
+            take the trucks people already love and give them the stance,
             structure, drivability, and performance they always deserved.
         </p>
+
         <br>
+
         <p>
-            We are starting with Ford truck platforms because that is where our passion is.
-            Bumpsides, dentsides, OBS trucks, and the machines that shaped generations of
-            working-class horsepower. Old soul. Modern bones.
+            We are starting with Ford truck platforms because that is where
+            our passion is. Bumpsides, dentsides, OBS trucks,
+            and the machines that shaped generations of working-class horsepower.
+            Old soul. Modern bones.
         </p>
+
     </div>
 
     <div class="cards">
+
         <div class="card">
-            <h2>Engineering First</h2>
+
+            <h2>
+                Engineering First
+            </h2>
+
             <p>
-                Good fabrication starts before the first tube is cut. Geometry, fitment,
-                serviceability, strength, and stance all matter. We build with intent,
-                not guesswork.
+                Good fabrication starts before the first tube is cut.
+                Geometry, fitment, serviceability, strength,
+                and stance all matter.
+                We build with intent, not guesswork.
             </p>
+
         </div>
 
         <div class="card">
-            <h2>Ford Truck Focus</h2>
+
+            <h2>
+                Ford Truck Focus
+            </h2>
+
             <p>
-                Pierce Fab Co. is focused on classic Ford pickups first: chassis packages,
-                suspension systems, custom fabrication, and rolling foundations built for
-                real street performance.
+                Pierce Fab Co. is focused on classic Ford pickups first:
+                chassis packages, suspension systems,
+                custom fabrication, and rolling foundations
+                built for real street performance.
             </p>
+
         </div>
+
     </div>
+
 </main>
 
 <footer class="footer">
+
     <div>PIERCE FAB CO.</div>
+
     <div>WEATHERFORD, TEXAS</div>
+
     <div>(817) 555-0123</div>
+
     <div>INFO@PIERCEFABCO.COM</div>
+
     <div>© 2026 Pierce Fab Co., LLC</div>
+
 </footer>
 
 </section>
