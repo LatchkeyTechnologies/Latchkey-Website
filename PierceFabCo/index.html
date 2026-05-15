@@ -13,10 +13,6 @@
   --cream:#eee7dc;
   --gold:#b68435;
   --white:#f4efe7;
-
-  /* EASY IMAGE SWAPS */
-  --hero:url("hero-f100.jpg");
-  --feature:url("lower-f150.jpg");
 }
 
 body{
@@ -26,12 +22,11 @@ body{
 }
 
 .header{
-  height:112px;
   background:#050505;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 48px;
+  padding:28px 48px;
 }
 
 .brand{
@@ -64,21 +59,29 @@ body{
 }
 
 .hero{
-  min-height:560px;
-  display:grid;
-  grid-template-columns:38% 62%;
-  background:
-    linear-gradient(to right, rgba(0,0,0,.96), rgba(0,0,0,.72), rgba(0,0,0,.15)),
-    var(--hero);
-  background-size:contain;
-  background-repeat:no-repeat;
-  background-color:#050505;
-  background-position:center right;
+  position:relative;
+  background:#050505;
+}
+
+.hero img{
+  width:100%;
+  display:block;
 }
 
 .hero-text{
-  padding:80px 0 70px 48px;
-  max-width:440px;
+  position:absolute;
+  top:14%;
+  left:48px;
+  max-width:380px;
+  z-index:2;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to right, rgba(0,0,0,.92), rgba(0,0,0,.55), rgba(0,0,0,.05));
+  pointer-events:none;
 }
 
 h1{
@@ -169,7 +172,7 @@ h1{
 .lower{
   background:#050505;
   display:grid;
-  grid-template-columns:28% 72%;
+  grid-template-columns:30% 70%;
   gap:38px;
   padding:54px 48px;
   align-items:center;
@@ -189,13 +192,9 @@ h1{
   margin-bottom:30px;
 }
 
-.feature-img{
-  height:390px;
-  background:var(--feature);
-  background-size:100% auto;
-  background-repeat:no-repeat;
-  background-color:#050505;
-  background-position:center;
+.feature-img img{
+  width:100%;
+  display:block;
 }
 
 .footer{
@@ -213,8 +212,8 @@ h1{
 
 /* PHONE */
 @media(max-width:800px){
+
   .header{
-    height:auto;
     flex-direction:column;
     gap:24px;
     padding:26px 20px;
@@ -231,15 +230,17 @@ h1{
     gap:20px;
   }
 
-  .hero{
-    display:block;
-    min-height:620px;
-    background-position:center;
+  .hero-text{
+    position:relative;
+    top:auto;
+    left:auto;
+    max-width:none;
+    padding:36px 26px 44px;
+    background:#050505;
   }
 
-  .hero-text{
-    padding:70px 26px;
-    max-width:100%;
+  .hero::after{
+    display:none;
   }
 
   h1{
@@ -253,10 +254,6 @@ h1{
   .lower{
     grid-template-columns:1fr;
     padding:44px 26px;
-  }
-
-  .feature-img{
-    height:320px;
   }
 
   .footer{
@@ -287,6 +284,8 @@ h1{
 </header>
 
 <section class="hero">
+  <img src="hero-f100.jpg" alt="Pierce Fab Co. Ford truck chassis build">
+
   <div class="hero-text">
     <h1>Built By Hand.<br>Driven By Passion.</h1>
     <div class="gold-line"></div>
@@ -340,7 +339,7 @@ h1{
 <section class="lower">
   <div>
     <div class="kicker">Built With Purpose.</div>
-    <h2>Real Cars.<br>Real People.</h2>
+    <h2>Real Trucks.<br>Real Craft.</h2>
 
     <p>
       From classic Ford pickups to one-off machines, we work with passionate
@@ -350,7 +349,9 @@ h1{
     <a class="btn" href="#">About Us</a>
   </div>
 
-  <div class="feature-img"></div>
+  <div class="feature-img">
+    <img src="lower-f150.jpg" alt="Pierce Fab Co. OBS Ford truck chassis build">
+  </div>
 </section>
 
 <footer class="footer">
