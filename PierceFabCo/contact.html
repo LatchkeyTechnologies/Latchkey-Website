@@ -7,19 +7,11 @@
 
 <style>
 
-/* =========================================
-   RESET
-========================================= */
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
-
-/* =========================================
-   VARIABLES
-========================================= */
 
 :root{
     --black:#050505;
@@ -28,12 +20,8 @@
     --text:#ddd5c8;
 }
 
-/* =========================================
-   BODY
-========================================= */
-
 body{
-    background:var(--black);
+    background:#050505;
     color:var(--white);
     font-family:Arial, Helvetica, sans-serif;
     overflow-x:hidden;
@@ -75,10 +63,6 @@ body{
     margin-top:10px;
 }
 
-/* =========================================
-   NAV
-========================================= */
-
 .nav{
     display:flex;
     gap:28px;
@@ -99,11 +83,12 @@ body{
 }
 
 /* =========================================
-   CONTACT SECTION
+   MAIN STAGE
 ========================================= */
 
-.contact-section{
+.contact-stage{
     position:relative;
+
     overflow:hidden;
 
     min-height:calc(100vh - 170px);
@@ -111,35 +96,36 @@ body{
     background:#050505;
 }
 
-/* Blueprint Background */
+/* Blueprint */
 
-.contact-section::before{
+.contact-stage::before{
     content:"";
     position:absolute;
     inset:0;
 
     background-image:url("frame-blueprint-sepia.jpg");
 
-    background-size:contain;
+    background-size:1400px auto;
     background-position:center center;
     background-repeat:no-repeat;
 
     opacity:.32;
 
     filter:
-        brightness(1.18)
-        contrast(1.1)
+        brightness(1.15)
+        contrast(1.08)
         sepia(.55);
 
     mix-blend-mode:screen;
 
     z-index:0;
+
     pointer-events:none;
 }
 
-/* Dark Overlay */
+/* Dark atmospheric overlay */
 
-.contact-section::after{
+.contact-stage::after{
     content:"";
     position:absolute;
     inset:0;
@@ -147,8 +133,8 @@ body{
     background:
         linear-gradient(
             to bottom,
-            rgba(5,5,5,.52),
-            rgba(5,5,5,.74)
+            rgba(5,5,5,.40),
+            rgba(5,5,5,.72)
         );
 
     z-index:1;
@@ -156,17 +142,24 @@ body{
 }
 
 /* =========================================
-   CONTENT
+   CONTENT WRAPPER
 ========================================= */
 
 .main{
     position:relative;
     z-index:2;
 
-    padding:120px 48px 140px;
+    width:100%;
+    max-width:1400px;
 
-    max-width:1200px;
+    margin:0 auto;
+
+    padding:110px 48px 130px;
 }
+
+/* =========================================
+   HERO
+========================================= */
 
 .kicker{
     color:var(--gold);
@@ -187,6 +180,8 @@ body{
     text-transform:uppercase;
 
     margin-bottom:30px;
+
+    max-width:900px;
 }
 
 .gold-line{
@@ -195,45 +190,49 @@ body{
 
     background:var(--gold);
 
-    margin-bottom:40px;
+    margin-bottom:44px;
 }
 
 /* =========================================
-   CONTACT GRID
+   GRID
 ========================================= */
 
 .contact-grid{
     display:grid;
+
     grid-template-columns:1fr 1fr;
 
-    gap:40px;
+    gap:36px;
 
-    margin-top:40px;
+    max-width:1100px;
 }
+
+/* =========================================
+   CARDS
+========================================= */
 
 .contact-card{
     border:1px solid rgba(255,255,255,.10);
 
-    background:rgba(5,5,5,.70);
+    background:rgba(5,5,5,.58);
 
-    padding:42px;
+    padding:40px;
 
     backdrop-filter:blur(3px);
 }
 
 .contact-card h2{
-    font-size:26px;
+    font-size:28px;
 
     text-transform:uppercase;
 
-    margin-bottom:26px;
+    margin-bottom:28px;
 }
 
 .contact-info{
     display:flex;
     flex-direction:column;
-
-    gap:22px;
+    gap:26px;
 }
 
 .info-block label{
@@ -246,7 +245,7 @@ body{
 
     text-transform:uppercase;
 
-    margin-bottom:8px;
+    margin-bottom:10px;
 }
 
 .info-block div{
@@ -260,7 +259,7 @@ body{
 .description{
     color:var(--text);
 
-    line-height:1.9;
+    line-height:2;
 
     font-size:17px;
 }
@@ -331,8 +330,8 @@ body{
         padding:30px;
     }
 
-    .contact-section::before{
-        background-size:170%;
+    .contact-stage::before{
+        background-size:185%;
         background-position:center center;
 
         opacity:.18;
@@ -343,10 +342,6 @@ body{
 </head>
 
 <body>
-
-<!-- =====================================
-     HEADER
-===================================== -->
 
 <header class="header">
 
@@ -366,11 +361,7 @@ body{
 
 </header>
 
-<!-- =====================================
-     CONTACT SECTION
-===================================== -->
-
-<section class="contact-section">
+<section class="contact-stage">
 
     <main class="main">
 
@@ -386,7 +377,7 @@ body{
 
         <div class="contact-grid">
 
-            <!-- LEFT CARD -->
+            <!-- LEFT -->
 
             <div class="contact-card">
 
@@ -415,7 +406,7 @@ body{
 
             </div>
 
-            <!-- RIGHT CARD -->
+            <!-- RIGHT -->
 
             <div class="contact-card">
 
@@ -427,7 +418,8 @@ body{
 
                     <p>
                         Whether you're planning a complete chassis build,
-                        suspension upgrade, custom fabrication project,
+                        suspension upgrade,
+                        custom fabrication project,
                         or a full custom truck,
                         we'd love to hear about it.
                     </p>
@@ -450,10 +442,6 @@ body{
     </main>
 
 </section>
-
-<!-- =====================================
-     FOOTER
-===================================== -->
 
 <footer class="footer">
 
